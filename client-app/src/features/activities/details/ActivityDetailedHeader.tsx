@@ -3,7 +3,6 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Header, Item, Segment, Image } from 'semantic-ui-react'
 import { Activity } from "../../../app/models/activity";
-import { useStore } from '../../../app/stores/store';
 
 const activityImageStyle = {
     filter: 'brightness(30%)'
@@ -23,8 +22,6 @@ interface Props {
 }
 
 export default observer (function ActivityDetailedHeader({activity}: Props) {
-    // "Bring in our activity store into this component" and "destructure" what we need from there
-    const {activityStore: {updateAttendance, loading}} = useStore();
     return (
         <Segment.Group>
             <Segment basic attached='top' style={{padding: '0'}}>

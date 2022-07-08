@@ -18,6 +18,7 @@ export default observer(function NavBar() {
                 <Menu.Item>
                     <Button as={NavLink} to='/createActivity' positive content='Create Activity' />
                 </Menu.Item>
+                <Menu.Item as={NavLink} to='/playground' name='Playground' />
                 <Menu.Item position='right'>
                     <Dropdown pointing='top left' text={user?.displayName}>
                         <Dropdown.Menu>

@@ -24,7 +24,7 @@ export default function ActivityListItem({activity}: Props) {
                 <Item.Group>
                     <Item.Content>
                         <Item.Header as={Link} to={`/activities/${activity.id}`}>
-                            {activity.title}
+                            {activity.title} ({activity.category})
                         </Item.Header>
                         <Button
                             as={Link}
