@@ -1,19 +1,26 @@
-import React from "react";
+import React, { SyntheticEvent, useState } from 'react';
 import { Link } from "react-router-dom";
-import { Button, Item, Label, Segment } from "semantic-ui-react";
+import { Button, Item, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
+import { useStore } from '../../../app/stores/store';
 
 interface Props {
     activity: Activity
 }
 
 export default function ActivityListItem({activity}: Props) {
+    const {activityStore} = useStore();
+    const {deleteActivity, loading} = activityStore;
+    const [target, setTarget] = useState('');
+
+    function handleActivityDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
+        setTarget(e.currentTarget.name);
+        deleteActivity(id);
+    }
+
     return (
         <Segment.Group>
             <Segment>
-                {activity.isCancelled &&
-                    <Label attached='top' color='red' content='Cancelled' style={{textAlign: 'center'}} />
-                }
                 <Item.Group>
                     <Item.Content>
                         <Item.Header as={Link} to={`/activities/${activity.id}`}>
@@ -31,6 +38,13 @@ export default function ActivityListItem({activity}: Props) {
                     floated='right'
                     content='View'
                 />
+                <Button 
+                    name={activity.id}
+                    loading={loading && target === activity.id.toString()}
+                    onClick={(e) => handleActivityDelete(e, activity.id)} 
+                    floated='right' 
+                    content='Delete' 
+                    color='red' />
             </Segment>
         </Segment.Group>
     )
