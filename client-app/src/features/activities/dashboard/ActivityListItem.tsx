@@ -26,25 +26,25 @@ export default function ActivityListItem({activity}: Props) {
                         <Item.Header as={Link} to={`/activities/${activity.id}`}>
                             {activity.title}
                         </Item.Header>
+                        <Button
+                            as={Link}
+                            to={`/activities/${activity.id}`}
+                            color='teal'
+                            floated='right'
+                            content='View'
+                            size='tiny'
+                        />
+                        <Button 
+                            name={activity.id}
+                            loading={loading && target === activity.id.toString()}
+                            onClick={(e) => handleActivityDelete(e, activity.id)} 
+                            floated='right' 
+                            content='Delete' 
+                            color='red'
+                            size='tiny'
+                        />
                     </Item.Content>
                 </Item.Group>
-            </Segment>
-            <Segment clearing>
-                <span>{activity.description}</span>
-                <Button
-                    as={Link}
-                    to={`/activities/${activity.id}`}
-                    color='teal'
-                    floated='right'
-                    content='View'
-                />
-                <Button 
-                    name={activity.id}
-                    loading={loading && target === activity.id.toString()}
-                    onClick={(e) => handleActivityDelete(e, activity.id)} 
-                    floated='right' 
-                    content='Delete' 
-                    color='red' />
             </Segment>
         </Segment.Group>
     )

@@ -44,24 +44,13 @@ export default observer (function ActivityDetailedHeader({activity}: Props) {
                 </Segment>
             </Segment>
             <Segment clearing attached='bottom'>
-                {activity.isHost ? (
-                    <Button as={Link} 
-                        disabled={activity.isCancelled}
-                        to={`/manage/${activity.id}`}
-                        color='orange'
-                        floated='right'>
-                        Manage Event
-                    </Button>
-                ) : activity.isGoing ? (
-                    <Button loading={loading} onClick={updateAttendance}>Cancel attendance</Button>
-                ) : (
-                    <Button disabled={activity.isCancelled}
-                        loading={loading} 
-                        onClick={updateAttendance} 
-                        color='teal'>
-                            Join Activity
-                    </Button>
-                )}
+                <Button as={Link} 
+                    disabled={activity.isCancelled}
+                    to={`/manage/${activity.id}`}
+                    color='orange'
+                    floated='right'>
+                    Update
+                </Button>
             </Segment>
         </Segment.Group>
     )
