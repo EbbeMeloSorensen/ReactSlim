@@ -1,7 +1,6 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Activity, ActivityFormValues } from "../models/activity";
-import { format } from 'date-fns';
 import { store } from "./store";
 import { Profile } from "../models/profile";
 import { Pagination, PagingParams } from "../models/pagination";
@@ -34,10 +33,9 @@ export default class ActivityStore {
     }
 
     setPredicate = (predicate: string, value: string | Date) => {
-        console.log('setPredicate called');
         const resetPredicate = () => {
             this.predicate.forEach((value, key) => {
-                if (key !== 'startDate') this.predicate.delete(key);
+                this.predicate.delete(key);
             })
         }
         switch (predicate) {
@@ -53,9 +51,6 @@ export default class ActivityStore {
                 resetPredicate();
                 this.predicate.set('isHost', true);
                 break;
-            case 'startDate':
-                this.predicate.delete('startDate');
-                this.predicate.set('startDate', value);
         }
     }
 
@@ -63,29 +58,13 @@ export default class ActivityStore {
         const params = new URLSearchParams();
         params.append('pageNumber', this.pagingParams.pageNumber.toString());
         params.append('pageSize', this.pagingParams.pageSize.toString());
-        this.predicate.forEach((value, key) => {
-            if (key === 'startDate') {
-                params.append(key, (value as Date).toISOString())
-            } else {
-                params.append(key, value);
-            }
-        })
+        this.predicate.forEach((value, key) => params.append(key, value))
         return params;
     }
 
     get activitiesByDate() {
         return Array.from(this.activityRegistry.values()).sort((a, b) => 
             a.date!.getTime() - b.date!.getTime());
-    }
-
-    get groupedActivities() {
-        return Object.entries(
-            this.activitiesByDate.reduce((activities, activity) => {
-                const date = format(activity.date!, 'dd MMM yyyy');
-                activities[date] = activities[date] ? [...activities[date], activity] : [activity];
-                return activities;
-            }, {} as {[key: string]: Activity[]})
-        )
     }
 
     loadActivities = async () => {

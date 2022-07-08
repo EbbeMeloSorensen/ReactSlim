@@ -1,15 +1,10 @@
 import { observer } from "mobx-react-lite";
 import React from "react";
-import Calendar from "react-calendar";
 import { Header, Menu } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function ActivityFilters() {
     const {activityStore: {predicate, setPredicate}} = useStore();
-
-    function onChange(date: Date) {
-        setPredicate('startDate', date)
-    }
 
     return (
         <>
@@ -32,12 +27,6 @@ export default observer(function ActivityFilters() {
                 />
             </Menu>
             <Header />
-            <Calendar
-                // Lavet en smule anderledes end i kurset, da jeg ellers ikke kunne få det til at virke
-                //onChange={(date) => setPredicate('startDate', date as Date)}
-                onChange={onChange}
-                value={predicate.get('startDate') || new Date()}
-            />
         </>
     )
 })

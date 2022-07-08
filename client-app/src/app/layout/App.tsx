@@ -14,7 +14,6 @@ import ServerError from '../../features/errors/ServerError';
 import { useStore } from '../stores/store';
 import LoadingComponent from './LoadingComponents';
 import ModalContainer from '../common/modals/ModalContainer';
-import ProfilePage from '../../features/profiles/ProfilePage';
 import PrivateRoute from './PrivateRoute';
 
 function App() {
@@ -46,7 +45,6 @@ function App() {
                 <PrivateRoute exact path='/activities' component={ActivityDashboard} />
                 <PrivateRoute path='/activities/:id' component={ActivityDetails} />
                 <PrivateRoute key={location.key} path={['/createActivity', '/manage/:id']} component={ActivityForm} />
-                <PrivateRoute path='/profiles/:username' component={ProfilePage} />
                 <PrivateRoute path='/errors' component={TestErrors} />
                 <Route path='/server-error' component={ServerError} />
                 <Route component={NotFound} />
