@@ -1,8 +1,6 @@
 using Application.Activities;
 using Application.Core;
 using Application.Interfaces;
-using Infrastructure.Photos;
-using Infrastructure.Photosy;
 using Infrastructure.Security;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
@@ -85,9 +83,6 @@ namespace API.Extensions
             services.AddMediatR(assemblies: typeof(List.Handler).Assembly);
             services.AddAutoMapper(assemblies: typeof(MappingProfiles).Assembly);
             services.AddScoped<IUserAccessor, UserAccessor>();
-            services.AddScoped<IPhotoAccessor, PhotoAccessor>();
-            services.Configure<CloudinarySettings>(config.GetSection("Cloudinary"));
-            services.AddSignalR();
 
             return services;
         }
