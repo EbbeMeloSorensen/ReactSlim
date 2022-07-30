@@ -1,8 +1,6 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
 import { Activity, ActivityFormValues } from "../models/activity";
-import { store } from "./store";
-import { Profile } from "../models/profile";
 import { Pagination, PagingParams } from "../models/pagination";
 
 export default class ActivityStore {
@@ -123,13 +121,9 @@ export default class ActivityStore {
     }
 
     createActivity = async (activity: ActivityFormValues) => {
-        const user = store.userStore.user;
-        const attendee = new Profile(user!);
         try {
             await agent.Activities.create(activity);
             const newActivity = new Activity(activity);
-            newActivity.hostUsername = user!.username;
-            newActivity.attendees = [attendee];
             this.setActivity(newActivity);
             runInAction(() => {
                 this.selectedActivity = newActivity;
@@ -171,20 +165,10 @@ export default class ActivityStore {
     }
 
     updateAttendance = async () => {
-        const user = store.userStore.user;
         this.loading = true;
         try {
             await agent.Activities.attend(this.selectedActivity!.id);
             runInAction(() => {
-                if (this.selectedActivity?.isGoing) {
-                    this.selectedActivity.attendees = 
-                        this.selectedActivity.attendees?.filter(a => a.username !== user?.username);
-                    this.selectedActivity.isGoing = false;
-                } else {
-                    const attendee = new Profile(user!);
-                    this.selectedActivity?.attendees?.push(attendee);
-                    this.selectedActivity!.isGoing = true;
-                }
                 this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!)
             })
         } catch (error) {
@@ -211,16 +195,5 @@ export default class ActivityStore {
 
     clearSelectedActivity = () => {
         this.selectedActivity = undefined;
-    }
-
-    updateAttendeeFollowing = (username: string) => {
-        this.activityRegistry.forEach(activity => {
-            activity.attendees.forEach(attendee => {
-                if (attendee.username === username) {
-                    attendee.following ? attendee.followersCount-- : attendee.followersCount++;
-                    attendee.following = !attendee.following;
-                }
-            })
-        })
     }
 }
