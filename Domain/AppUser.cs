@@ -5,8 +5,5 @@ namespace Domain
     public class AppUser : IdentityUser
     {
         public string DisplayName { get; set; } = null!;
-        //public string? Bio { get; set; }
-
-        public ICollection<ActivityAttendee> Activities { get; set; } = new List<ActivityAttendee>();
     }
 }

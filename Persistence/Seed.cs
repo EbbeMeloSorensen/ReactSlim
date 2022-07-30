@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Domain;
 using Microsoft.AspNetCore.Identity;
 
@@ -50,15 +46,7 @@ namespace Persistence
                         Description = "Activity 2 months ago",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Pub",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            }
-                        }
+                        Venue = "Pub"
                     },
                     new Activity
                     {
@@ -67,20 +55,7 @@ namespace Persistence
                         Description = "Activity 1 month ago",
                         Category = "culture",
                         City = "Paris",
-                        Venue = "The Louvre",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false
-                            },
-                        }
+                        Venue = "The Louvre"
                     },
                     new Activity
                     {
@@ -90,19 +65,6 @@ namespace Persistence
                         Category = "music",
                         City = "London",
                         Venue = "Wembly Stadium",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false
-                            },
-                        }
                     },
                     new Activity
                     {
@@ -111,20 +73,7 @@ namespace Persistence
                         Description = "Activity 2 months in future",
                         Category = "food",
                         City = "London",
-                        Venue = "Jamies Italian",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = false
-                            },
-                        }
+                        Venue = "Jamies Italian"
                     },
                     new Activity
                     {
@@ -133,20 +82,7 @@ namespace Persistence
                         Description = "Activity 3 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Pub",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = true                            
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = false                            
-                            },
-                        }
+                        Venue = "Pub"
                     },
                     new Activity
                     {
@@ -155,15 +91,7 @@ namespace Persistence
                         Description = "Activity 4 months in future",
                         Category = "culture",
                         City = "London",
-                        Venue = "British Museum",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = true                            
-                            }
-                        }
+                        Venue = "British Museum"
                     },
                     new Activity
                     {
@@ -172,20 +100,7 @@ namespace Persistence
                         Description = "Activity 5 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Punch and Judy",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true                            
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false                            
-                            },
-                        }
+                        Venue = "Punch and Judy"
                     },
                     new Activity
                     {
@@ -194,20 +109,7 @@ namespace Persistence
                         Description = "Activity 6 months in future",
                         Category = "music",
                         City = "London",
-                        Venue = "O2 Arena",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = true                            
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false                            
-                            },
-                        }
+                        Venue = "O2 Arena"
                     },
                     new Activity
                     {
@@ -216,20 +118,7 @@ namespace Persistence
                         Description = "Activity 7 months in future",
                         Category = "travel",
                         City = "Berlin",
-                        Venue = "All",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[0],
-                                IsHost = true                            
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = false                            
-                            },
-                        }
+                        Venue = "All"
                     },
                     new Activity
                     {
@@ -238,20 +127,7 @@ namespace Persistence
                         Description = "Activity 8 months in future",
                         Category = "drinks",
                         City = "London",
-                        Venue = "Pub",
-                        Attendees = new List<ActivityAttendee>
-                        {
-                            new ActivityAttendee
-                            {
-                                AppUser = users[2],
-                                IsHost = true                            
-                            },
-                            new ActivityAttendee
-                            {
-                                AppUser = users[1],
-                                IsHost = false                            
-                            },
-                        }
+                        Venue = "Pub"
                     }
                 };
 

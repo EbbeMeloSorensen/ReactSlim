@@ -15,8 +15,6 @@ namespace Application.Activities
         public string Category { get; set; } = null!;
         public string City { get; set; } = null!;
         public string Venue { get; set; } = null!;
-        public string HostUsername { get; set; } = null!;
         public bool IsCancelled { get; set; }
-        public ICollection<AttendeeDto> Attendees { get; set; } = new List<AttendeeDto>();
     }
 }
