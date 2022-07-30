@@ -42,7 +42,7 @@ export default observer (function ActivityDetailedHeader({activity}: Props) {
             </Segment>
             <Segment clearing attached='bottom'>
                 <Button as={Link} 
-                    disabled={activity.isCancelled}
+                    disabled={activity.completed}
                     to={`/manage/${activity.id}`}
                     color='orange'
                     floated='right'>

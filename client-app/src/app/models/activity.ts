@@ -6,7 +6,7 @@ export interface Activity {
     category: string;
     city: string;
     venue: string;
-    isCancelled: boolean;
+    completed: boolean;
 }
 
 export class Activity implements Activity {

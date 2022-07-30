@@ -20,7 +20,7 @@ namespace Persistence.Migrations
                     Category = table.Column<string>(type: "TEXT", nullable: true),
                     City = table.Column<string>(type: "TEXT", nullable: true),
                     Venue = table.Column<string>(type: "TEXT", nullable: true),
-                    IsCancelled = table.Column<bool>(type: "INTEGER", nullable: false)
+                    Completed = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
