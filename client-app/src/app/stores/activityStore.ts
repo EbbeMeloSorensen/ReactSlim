@@ -62,7 +62,7 @@ export default class ActivityStore {
 
     get activitiesByDate() {
         return Array.from(this.activityRegistry.values()).sort((a, b) => 
-            a.date!.getTime() - b.date!.getTime());
+            a.deadline!.getTime() - b.deadline!.getTime());
     }
 
     loadActivities = async () => {
@@ -108,7 +108,7 @@ export default class ActivityStore {
     }
 
     private setActivity = (activity: Activity) => {
-        activity.date = new Date(activity.date!);
+        activity.deadline = new Date(activity.deadline!);
         this.activityRegistry.set(activity.id, activity);
     }
 

@@ -30,8 +30,8 @@ namespace Application.Activities
             public async Task<Result<PagedList<ActivityDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var query = _context.Activities
-                    //.Where(d => d.Date >= request.Params.StartDate)
-                    .OrderBy(d => d.Date)
+                    //.Where(d => d.Deadline >= request.Params.StartDate)
+                    .OrderBy(d => d.Deadline)
                     .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();

@@ -1,7 +1,7 @@
 export interface Activity {
     id: string;
     title: string;
-    date: Date | null;
+    deadline: Date | null;
     description: string;
     category: string;
     city: string;
@@ -20,7 +20,7 @@ export class ActivityFormValues {
     title: string = '';
     category: string = '';
     description: string = '';
-    date: Date | null = null;
+    deadline: Date | null = null;
     city: string = '';
     venue: string = '';
 
@@ -30,7 +30,7 @@ export class ActivityFormValues {
             this.title = activity.title;
             this.category = activity.category;
             this.description = activity.description;
-            this.date = activity.date;
+            this.deadline = activity.deadline;
             this.venue = activity.venue;
             this.city = activity.city;
         }
