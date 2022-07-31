@@ -1,4 +1,4 @@
 * Refaktorer datamodellen, så den passer til Tasks
-  o Ændr navnet Date til Deadline
-  o Ændr navnet IsCancelled til Completed
-  o Fjern City og Venue
+  o Ændr navnet Date til Deadline (OK)
+  o Ændr navnet IsCancelled til Completed (OK)
+  o Fjern City og Venue (OK)

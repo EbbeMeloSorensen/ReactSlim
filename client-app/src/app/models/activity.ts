@@ -4,8 +4,6 @@ export interface Activity {
     deadline: Date | null;
     description: string;
     category: string;
-    city: string;
-    venue: string;
     completed: boolean;
 }
 
@@ -21,8 +19,6 @@ export class ActivityFormValues {
     category: string = '';
     description: string = '';
     deadline: Date | null = null;
-    city: string = '';
-    venue: string = '';
 
     constructor(activity?: ActivityFormValues) {
         if (activity) {
@@ -31,8 +27,6 @@ export class ActivityFormValues {
             this.category = activity.category;
             this.description = activity.description;
             this.deadline = activity.deadline;
-            this.venue = activity.venue;
-            this.city = activity.city;
         }
     }
 }

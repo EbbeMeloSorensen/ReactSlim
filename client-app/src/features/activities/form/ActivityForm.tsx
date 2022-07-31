@@ -26,9 +26,7 @@ export default observer(function ActivityForm() {
         title: Yup.string().required('The activity title is required'),
         description: Yup.string().required('The activity description is required'),
         category: Yup.string().required(),
-        date: Yup.string().required('Date is required').nullable(),
-        venue: Yup.string().required(),
-        city: Yup.string().required()
+        deadline: Yup.string().required('Deadline is required').nullable()
     })
 
     useEffect(() => {
@@ -63,15 +61,12 @@ export default observer(function ActivityForm() {
                     <MyTextArea rows={3} placeholder='Description' name='description'/>
                     <MySelectInput options={categoryOptions} placeholder='Category' name='category'/>
                     <MyDateInput
-                        placeholderText='Date'
-                        name='date'
+                        placeholderText='Deadline'
+                        name='deadline'
                         showTimeSelect
                         timeCaption='time'
                         dateFormat='MMMM d, yyyy h:mm aa'
                     />
-                    <Header content='Location Details' sub color='teal' />
-                    <MyTextInput placeholder='City' name='city'/>
-                    <MyTextInput placeholder='Venue' name='venue'/>
                     <Button 
                         disabled={isSubmitting || !dirty || !isValid}
                         loading={isSubmitting} floated='right' 

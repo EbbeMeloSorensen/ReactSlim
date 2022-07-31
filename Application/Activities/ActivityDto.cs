@@ -1,9 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Application.Profiles;
-
 namespace Application.Activities
 {
     public class ActivityDto
@@ -13,8 +7,6 @@ namespace Application.Activities
         public DateTime Deadline { get; set; }
         public string Description { get; set; } = null!;
         public string Category { get; set; } = null!;
-        public string City { get; set; } = null!;
-        public string Venue { get; set; } = null!;
         public bool Completed { get; set; }
     }
 }
