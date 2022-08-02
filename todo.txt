@@ -2,9 +2,9 @@
   o Ændr navnet Date til Deadline (OK)
   o Ændr navnet IsCancelled til Completed (OK)
   o Fjern City og Venue (OK)
-  o Fjern Category
+  o Fjern Category (OK)
   o Ændr navnet Activity til Task
 * Fjern Profile
 * Ret listen til så det ser ordentligt ud
 * Overvej at placere Details på samme side som listen
-* Lav placeholderen om
+* Tilret placeholderen, så den passer med mere kompakte liste
