@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
-using Domain;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Domain;
 
 namespace Persistence
 {

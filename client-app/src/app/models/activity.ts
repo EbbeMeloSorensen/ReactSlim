@@ -3,7 +3,7 @@ export interface Activity {
     title: string;
     deadline: Date | null;
     description: string;
-    category: string;
+    //category: string;
     completed: boolean;
 }
 
@@ -16,7 +16,7 @@ export class Activity implements Activity {
 export class ActivityFormValues {
     id?: string = undefined;
     title: string = '';
-    category: string = '';
+    //category: string = '';
     description: string = '';
     deadline: Date | null = null;
 
@@ -24,7 +24,7 @@ export class ActivityFormValues {
         if (activity) {
             this.id = activity.id;
             this.title = activity.title;
-            this.category = activity.category;
+            //this.category = activity.category;
             this.description = activity.description;
             this.deadline = activity.deadline;
         }

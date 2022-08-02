@@ -17,7 +17,6 @@ namespace Persistence.Migrations
                     Title = table.Column<string>(type: "TEXT", nullable: false),
                     Deadline = table.Column<DateTime>(type: "TEXT", nullable: false),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Category = table.Column<string>(type: "TEXT", nullable: true),
                     Completed = table.Column<bool>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
