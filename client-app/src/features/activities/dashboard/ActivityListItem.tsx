@@ -1,6 +1,6 @@
 import React, { SyntheticEvent, useState } from 'react';
 import { Link } from "react-router-dom";
-import { Button, Item, Segment } from "semantic-ui-react";
+import { Button, Item, List, Segment } from "semantic-ui-react";
 import { Activity } from "../../../app/models/activity";
 import { useStore } from '../../../app/stores/store';
 
@@ -19,33 +19,33 @@ export default function ActivityListItem({activity}: Props) {
     }
 
     return (
-        <Segment.Group>
-            <Segment>
-                <Item.Group>
-                    <Item.Content>
-                        <Item.Header as={Link} to={`/activities/${activity.id}`}>
-                            {activity.title}
-                        </Item.Header>
-                        <Button
-                            as={Link}
-                            to={`/activities/${activity.id}`}
-                            color='teal'
-                            floated='right'
-                            content='View'
-                            size='tiny'
-                        />
-                        <Button 
-                            name={activity.id}
-                            loading={loading && target === activity.id.toString()}
-                            onClick={(e) => handleActivityDelete(e, activity.id)} 
-                            floated='right' 
-                            content='Delete' 
-                            color='red'
-                            size='tiny'
-                        />
-                    </Item.Content>
-                </Item.Group>
-            </Segment>
-        </Segment.Group>
+        <List.Item>
+            <List.Content>
+                <List.Header as={Link} to={`/activities/${activity.id}`}>
+                    {activity.title}
+                </List.Header>
+            </List.Content>
+            <List.Content floated='right'>
+                <Button.Group verticalAlign='Top Aligned'>
+                    <Button
+                        as={Link}
+                        to={`/activities/${activity.id}`}
+                        color='teal'
+                        floated='right'
+                        content='View'
+                        size='tiny'
+                    />
+                    <Button
+                        name={activity.id}
+                        loading={loading && target === activity.id.toString()}
+                        onClick={(e) => handleActivityDelete(e, activity.id)} 
+                        floated='right' 
+                        content='Delete' 
+                        color='red'
+                        size='tiny'
+                    />
+                </Button.Group>
+            </List.Content>
+        </List.Item>
     )
 }
