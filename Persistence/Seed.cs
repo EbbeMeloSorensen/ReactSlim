@@ -37,69 +37,15 @@ namespace Persistence
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
 
-                var activities = new List<Activity>
-                {
-                    new Activity
-                    {
-                        Title = "Past Activity 1",
-                        Deadline = DateTime.UtcNow.AddMonths(-2),
-                        Description = "Activity 2 months ago"
-                    },
-                    new Activity
-                    {
-                        Title = "Past Activity 2",
-                        Deadline = DateTime.UtcNow.AddMonths(-1),
-                        Description = "Activity 1 month ago"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 1",
-                        Deadline = DateTime.UtcNow.AddMonths(1),
-                        Description = "Activity 1 month in future"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 2",
-                        Deadline = DateTime.UtcNow.AddMonths(2),
-                        Description = "Activity 2 months in future"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 3",
-                        Deadline = DateTime.UtcNow.AddMonths(3),
-                        Description = "Activity 3 months in future"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 4",
-                        Deadline = DateTime.UtcNow.AddMonths(4),
-                        Description = "Activity 4 months in future"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 5",
-                        Deadline = DateTime.UtcNow.AddMonths(5),
-                        Description = "Activity 5 months in future"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 6",
-                        Deadline = DateTime.UtcNow.AddMonths(6),
-                        Description = "Activity 6 months in future"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 7",
-                        Deadline = DateTime.UtcNow.AddMonths(7),
-                        Description = "Activity 7 months in future"
-                    },
-                    new Activity
-                    {
-                        Title = "Future Activity 8",
-                        Deadline = DateTime.UtcNow.AddMonths(8),
-                        Description = "Activity 8 months in future"
-                    }
-                };
+                var activities = Enumerable
+                    .Range(1, 100)
+                    .Select(i => new Activity{
+                        Title = $"Task {i}",
+                        Description = $"Description {i}",
+                        Deadline = DateTime.UtcNow.AddDays(i - 20),
+                        Completed = i % 3 == 0
+                    })
+                    .ToList();
 
                 await context.Activities.AddRangeAsync(activities);
                 await context.SaveChangesAsync();

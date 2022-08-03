@@ -36,14 +36,16 @@ namespace Application.Activities
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();
 
-                if (request.Params.IsGoing && !request.Params.IsHost)
+                if (request.Params.NotCompleted && !request.Params.Completed)
                 {
                     //query = query.Where(x => x.Attendees.Any(a => a.Username == _userAccessor.GetUsername()));
+                    query = query.Where(x => !x.Completed);
                 }
 
-                if (request.Params.IsHost && !request.Params.IsGoing)
+                if (request.Params.Completed && !request.Params.NotCompleted)
                 {
                     //query = query.Where(x => x.HostUsername == _userAccessor.GetUsername());
+                    query = query.Where(x => x.Completed);
                 }
 
                 return Result<PagedList<ActivityDto>>.Success(

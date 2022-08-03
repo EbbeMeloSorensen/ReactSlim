@@ -4,7 +4,10 @@
   o Fjern City og Venue (OK)
   o Fjern Category (OK)
   o Ændr navnet Activity til Task
-* Fjern Profile
-* Ret listen til så det ser ordentligt ud
+* Fjern Profile (OK)
+* Ret listen til så det ser ordentligt ud (OK)
+* Vis Completed propertyen under details (OK)
+* Lav et filter så man ud over at kunne se alle tasks kan se completed eller noncompleted (OK)
+* Vis tasks som er completed med overstregning i listen
 * Overvej at placere Details på samme side som listen
 * Tilret placeholderen, så den passer med mere kompakte liste

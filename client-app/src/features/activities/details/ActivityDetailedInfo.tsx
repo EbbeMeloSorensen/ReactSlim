@@ -33,6 +33,18 @@ export default observer(function ActivityDetailedInfo({activity}: Props) {
                     </Grid.Column>
                 </Grid>
             </Segment>
+            <Segment attached>
+                <Grid verticalAlign='middle'>
+                    <Grid.Column width={1}>
+                        <Icon name='check circle' size='large' color='teal'/>
+                    </Grid.Column>
+                    <Grid.Column width={15}>
+                        <span>
+                            {activity.completed ? 'Completed' : 'Not completed'}
+                        </span>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
         </Segment.Group>
     )
 })

@@ -41,13 +41,13 @@ export default class ActivityStore {
                 resetPredicate();
                 this.predicate.set('all', true);
                 break;
-            case 'isGoing':
+            case 'notCompleted':
                 resetPredicate();
-                this.predicate.set('isGoing', true);
+                this.predicate.set('notCompleted', true);
                 break;
-            case 'isHost':
+            case 'completed':
                 resetPredicate();
-                this.predicate.set('isHost', true);
+                this.predicate.set('completed', true);
                 break;
         }
     }
