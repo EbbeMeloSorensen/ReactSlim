@@ -25,6 +25,9 @@ export default observer(function ActivityFilters() {
                     active={predicate.has('completed')}
                     onClick={() => setPredicate('completed', 'true')}
                 />
+                <Menu.Item
+                    content="Coming soon: Title filter"
+                />
             </Menu>
             <Header />
         </>

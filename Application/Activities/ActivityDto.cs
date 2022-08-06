@@ -6,7 +6,6 @@ namespace Application.Activities
         public string Title { get; set; } = null!;
         public DateTime Deadline { get; set; }
         public string Description { get; set; } = null!;
-        public string Category { get; set; } = null!;
         public bool Completed { get; set; }
     }
 }

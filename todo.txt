@@ -11,3 +11,4 @@
 * Vis tasks som er completed med overstregning i listen
 * Overvej at placere Details på samme side som listen
 * Tilret placeholderen, så den passer med mere kompakte liste
+* Lav et filter til Title
