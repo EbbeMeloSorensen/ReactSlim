@@ -30,24 +30,29 @@ export default class ActivityStore {
         this.pagingParams = pagingParams;
     }
 
+    resetPredicate = () => {
+        this.predicate.forEach((value, key) => {
+            this.predicate.delete(key);
+        })
+    }
+
     setPredicate = (predicate: string, value: string | Date) => {
-        const resetPredicate = () => {
-            this.predicate.forEach((value, key) => {
-                this.predicate.delete(key);
-            })
-        }
         switch (predicate) {
             case 'all':
-                resetPredicate();
+                this.resetPredicate();
                 this.predicate.set('all', true);
                 break;
             case 'notCompleted':
-                resetPredicate();
+                this.resetPredicate();
                 this.predicate.set('notCompleted', true);
                 break;
             case 'completed':
-                resetPredicate();
+                this.resetPredicate();
                 this.predicate.set('completed', true);
+                break;
+            case 'title':
+                this.resetPredicate();
+                this.predicate.set('title', value);
                 break;
         }
     }

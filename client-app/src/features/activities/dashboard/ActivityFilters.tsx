@@ -1,10 +1,18 @@
 import { observer } from "mobx-react-lite";
-import React from "react";
-import { Header, Menu } from "semantic-ui-react";
+import React, { useState } from "react";
+import { Button, Header, Label, Menu } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function ActivityFilters() {
     const {activityStore: {predicate, setPredicate}} = useStore();
+
+    // Nogle states, vi gerne vil sende til activityStore, når man klikker på Search-knappen
+    const [filter, setFilter] = useState('');
+
+    function handleClick() {
+        console.log(filter);
+        setPredicate('title', filter);
+    }
 
     return (
         <>
@@ -29,7 +37,15 @@ export default observer(function ActivityFilters() {
                     content="Coming soon: Title filter"
                 />
             </Menu>
-            <Header />
+            <br></br>
+            <Label>Title contains</Label>
+                <input value={filter} onChange={e => setFilter(e.target.value)}
+            />
+            <Button
+                floated="right"
+                content='Search'
+                onClick={() => handleClick()}
+            />
         </>
     )
 })

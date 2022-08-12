@@ -48,8 +48,11 @@ namespace Application.Activities
                     query = query.Where(x => x.Completed);
                 }
 
-                // Fun with title filtering
-                //query = query.Where(x => x.Title.Contains("Task 1"));
+                // Under construction: Title filtering
+                if (!string.IsNullOrEmpty(request.Params.Title))
+                {
+                    query = query.Where(x => x.Title.Contains(request.Params.Title));
+                }
 
                 return Result<PagedList<ActivityDto>>.Success(
                     await PagedList<ActivityDto>.CreateAsync(query, request.Params.PageNumber,

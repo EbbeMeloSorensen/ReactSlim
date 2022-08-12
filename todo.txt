@@ -12,3 +12,6 @@
 * Overvej at placere Details på samme side som listen
 * Tilret placeholderen, så den passer med mere kompakte liste
 * Lav et filter til Title
+  o Vedligehold en state i ActivityFilters, som udtrykker filteret (OK)
+  o Lav et filter på selve API'et og test med postman
+  o Kald APIet med filteret som specificeret i guien
