@@ -38,17 +38,14 @@ namespace Application.Activities
 
                 if (request.Params.NotCompleted && !request.Params.Completed)
                 {
-                    //query = query.Where(x => x.Attendees.Any(a => a.Username == _userAccessor.GetUsername()));
                     query = query.Where(x => !x.Completed);
                 }
 
                 if (request.Params.Completed && !request.Params.NotCompleted)
                 {
-                    //query = query.Where(x => x.HostUsername == _userAccessor.GetUsername());
                     query = query.Where(x => x.Completed);
                 }
 
-                // Under construction: Title filtering
                 if (!string.IsNullOrEmpty(request.Params.Title))
                 {
                     query = query.Where(x => x.Title.Contains(request.Params.Title));

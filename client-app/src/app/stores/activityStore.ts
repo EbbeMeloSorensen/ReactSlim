@@ -36,25 +36,14 @@ export default class ActivityStore {
         })
     }
 
-    setPredicate = (predicate: string, value: string | Date) => {
-        switch (predicate) {
-            case 'all':
-                this.resetPredicate();
-                this.predicate.set('all', true);
-                break;
-            case 'notCompleted':
-                this.resetPredicate();
-                this.predicate.set('notCompleted', true);
-                break;
-            case 'completed':
-                this.resetPredicate();
-                this.predicate.set('completed', true);
-                break;
-            case 'title':
-                this.resetPredicate();
-                this.predicate.set('title', value);
-                break;
-        }
+    setPredicate = (
+        value: string,
+        completed: boolean,
+        notCompleted: boolean) => {
+        this.resetPredicate();
+        this.predicate.set('title', value);
+        this.predicate.set('completed', completed);
+        this.predicate.set('notCompleted', notCompleted);
     }
 
     get axiosParams() {
