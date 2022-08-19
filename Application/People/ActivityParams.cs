@@ -1,6 +1,6 @@
 using Application.Core;
 
-namespace Application.Activities
+namespace Application.People
 {
     public class ActivityParams : PagingParams
     {

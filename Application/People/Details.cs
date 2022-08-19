@@ -6,7 +6,7 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Activities
+namespace Application.People
 {
     public class Details
     {
@@ -30,13 +30,13 @@ namespace Application.Activities
             
             public async Task<Result<ActivityDto>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var activity = await _context.Activities
+                var person = await _context.People
                     .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
                         new {currentUsername = _userAccessor.GetUsername()})
                     .FirstOrDefaultAsync(x => x.Id == request.Id);
 
 
-                return Result<ActivityDto>.Success(activity);
+                return Result<ActivityDto>.Success(person);
             }
         }
     }

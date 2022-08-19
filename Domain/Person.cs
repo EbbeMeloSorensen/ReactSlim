@@ -1,6 +1,6 @@
 namespace Domain
 {
-    public class Activity
+    public class Person
     {
         public Guid Id { get; set; }
         public string Title { get; set; } = null!;

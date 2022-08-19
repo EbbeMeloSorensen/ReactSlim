@@ -6,13 +6,13 @@ using MediatR;
 using Microsoft.EntityFrameworkCore;
 using Persistence;
 
-namespace Application.Activities
+namespace Application.People
 {
     public class Create
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Activity Activity { get; set; }
+            public Person Activity { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -39,7 +39,7 @@ namespace Application.Activities
                 var user = await _context.Users.FirstOrDefaultAsync(
                     x => x.UserName == _userAccessor.GetUsername());
 
-                _context.Activities.Add(request.Activity);
+                _context.People.Add(request.Activity);
 
                 var result = await _context.SaveChangesAsync() > 0;
 

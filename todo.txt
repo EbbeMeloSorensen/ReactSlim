@@ -10,7 +10,7 @@
 * Lav et filter så man ud over at kunne se alle tasks kan se completed eller noncompleted (OK)
 * Vis tasks som er completed med overstregning i listen
 * Overvej at placere Details på samme side som listen
-* Tilret placeholderen, så den passer med mere kompakte liste
+* Tilret placeholderen, så den passer med den mere kompakte liste
 * Lav et filter til Title
   o Vedligehold en state i ActivityFilters, som udtrykker filteret (OK)
   o Lav et filter på selve API'et og test med postman

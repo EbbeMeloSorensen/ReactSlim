@@ -10,7 +10,7 @@ namespace Persistence
         {
         }
 
-        public DbSet<Activity> Activities { get; set; }
+        public DbSet<Person> People { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

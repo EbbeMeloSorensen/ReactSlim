@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using FluentValidation.AspNetCore;
 using API.Extensions;
 using API.Middleware;
-using Application.Activities;
+using Application.People;
 
 namespace API
 {

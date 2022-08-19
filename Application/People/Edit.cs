@@ -5,13 +5,13 @@ using FluentValidation;
 using MediatR;
 using Persistence;
 
-namespace Application.Activities
+namespace Application.People
 {
     public class Edit
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Activity Activity { get; set; }
+            public Person Activity { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
@@ -35,7 +35,7 @@ namespace Application.Activities
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _context.Activities.FindAsync(request.Activity.Id);
+                var activity = await _context.People.FindAsync(request.Activity.Id);
 
                 if (activity == null) return null;
 

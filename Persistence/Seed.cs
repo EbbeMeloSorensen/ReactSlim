@@ -8,7 +8,7 @@ namespace Persistence
         public static async Task SeedData(DataContext context,
             UserManager<AppUser> userManager)
         {
-            if (!userManager.Users.Any() && !context.Activities.Any())
+            if (!userManager.Users.Any() && !context.People.Any())
             {
                 var users = new List<AppUser>
                 {
@@ -37,9 +37,9 @@ namespace Persistence
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
 
-                var activities = Enumerable
+                var people = Enumerable
                     .Range(1, 100)
-                    .Select(i => new Activity{
+                    .Select(i => new Person{
                         Title = $"Task {i}",
                         Description = $"Description {i}",
                         Deadline = DateTime.UtcNow.AddDays(i - 20),
@@ -47,7 +47,7 @@ namespace Persistence
                     })
                     .ToList();
 
-                await context.Activities.AddRangeAsync(activities);
+                await context.People.AddRangeAsync(people);
                 await context.SaveChangesAsync();
             }
         }

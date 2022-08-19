@@ -1,4 +1,4 @@
-using Application.Activities;
+using Application.People;
 using Application.Core;
 using Application.Interfaces;
 using Infrastructure.Security;

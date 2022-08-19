@@ -5,7 +5,7 @@ using AutoMapper.QueryableExtensions;
 using MediatR;
 using Persistence;
 
-namespace Application.Activities
+namespace Application.People
 {
     public class List
     {
@@ -29,7 +29,7 @@ namespace Application.Activities
 
             public async Task<Result<PagedList<ActivityDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var query = _context.Activities
+                var query = _context.People
                     //.Where(d => d.Deadline >= request.Params.StartDate)
                     .OrderBy(d => d.Deadline)
                     .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
