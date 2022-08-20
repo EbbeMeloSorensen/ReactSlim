@@ -15,19 +15,19 @@ import { PersonFormValues } from "../../../app/models/person";
 export default observer(function PersonForm() {
     const history = useHistory();
     const {personStore} = useStore();
-    const {createPerson, updatePerson, loadPerson, loadingInitial} = personStore; // "Destructure the props we need from the activity store"
+    const {createPerson, updatePerson, loadPerson, loadingInitial} = personStore; // "Destructure the props we need from the person store"
     const {id} = useParams<{id: string}>();
 
-    const [activity, setActivity] = useState<PersonFormValues>(new PersonFormValues());
+    const [person, setPerson] = useState<PersonFormValues>(new PersonFormValues());
 
     const validationSchema = Yup.object({
-        title: Yup.string().required('The activity title is required'),
-        description: Yup.string().required('The activity description is required'),
+        title: Yup.string().required('The person title is required'),
+        description: Yup.string().required('The person description is required'),
         deadline: Yup.string().required('Deadline is required').nullable()
     })
 
     useEffect(() => {
-        if (id) loadPerson(id).then(person => setActivity(new PersonFormValues(person)))
+        if (id) loadPerson(id).then(person => setPerson(new PersonFormValues(person)))
     }, [id, loadPerson]);
 
     function handleFormSubmit(person: PersonFormValues) {
@@ -50,7 +50,7 @@ export default observer(function PersonForm() {
             <Formik
             validationSchema={validationSchema}
                 enableReinitialize
-                initialValues={activity}
+                initialValues={person}
                 onSubmit={values => handleFormSubmit(values)}>
                 {({ handleSubmit, isValid, isSubmitting, dirty }) => (
                 <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
@@ -67,7 +67,7 @@ export default observer(function PersonForm() {
                         disabled={isSubmitting || !dirty || !isValid}
                         loading={isSubmitting} floated='right' 
                         positive type='submit' content='Submit' />
-                    <Button as={Link} to='/activities' floated='right' type='button' content='Cancel' />
+                    <Button as={Link} to='/people' floated='right' type='button' content='Cancel' />
                 </Form>
                 )}
             </Formik>

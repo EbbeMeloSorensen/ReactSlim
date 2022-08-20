@@ -75,13 +75,13 @@ const requests = {
 }
 
 const People = {
-    list: (params: URLSearchParams) => axios.get<PaginatedResult<Person[]>>('/activities', {params})
+    list: (params: URLSearchParams) => axios.get<PaginatedResult<Person[]>>('/people', {params})
         .then(responseBody),
-    details: (id: string) => requests.get<Person>(`/activities/${id}`),
-    create: (activity: PersonFormValues) => requests.post<void>('/activities', activity),
-    update: (activity: PersonFormValues) => requests.put<void>(`/activities/${activity.id}`, activity),
-    delete: (id: string) => requests.del<void>(`/activities/${id}`),
-    attend: (id: string) => requests.post<void>(`/activities/${id}/attend`, {})
+    details: (id: string) => requests.get<Person>(`/people/${id}`),
+    create: (person: PersonFormValues) => requests.post<void>('/people', person),
+    update: (person: PersonFormValues) => requests.put<void>(`/people/${person.id}`, person),
+    delete: (id: string) => requests.del<void>(`/people/${id}`),
+    attend: (id: string) => requests.post<void>(`/people/${id}/attend`, {})
 }
 
 const Account = {

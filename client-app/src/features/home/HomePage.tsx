@@ -19,7 +19,7 @@ export default observer(function HomePage() {
                     <>
                     <Header as='h2' inverted content='Welcome to People' />
                     <Button as={Link} to='/people' size='huge' inverted>
-                        Go to Activities
+                        Go to People
                     </Button>
                     </>
 

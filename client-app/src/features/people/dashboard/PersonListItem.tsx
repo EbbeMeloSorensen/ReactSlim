@@ -13,7 +13,7 @@ export default function PersonListItem({person}: Props) {
     const {deletePerson, loading} = personStore;
     const [target, setTarget] = useState('');
 
-    function handleActivityDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
+    function handlePersonDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
         setTarget(e.currentTarget.name);
         deletePerson(id);
     }
@@ -38,7 +38,7 @@ export default function PersonListItem({person}: Props) {
                     <Button
                         name={person.id}
                         loading={loading && target === person.id.toString()}
-                        onClick={(e) => handleActivityDelete(e, person.id)} 
+                        onClick={(e) => handlePersonDelete(e, person.id)} 
                         floated='right' 
                         content='Delete' 
                         color='red'

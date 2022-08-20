@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
-import PersonDashboard from '../../features/activities/dashboard/PersonDashboard';
+import PersonDashboard from '../../features/people/dashboard/PersonDashboard';
 import { observer } from 'mobx-react-lite';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
-import PersonForm from '../../features/activities/form/PersonForm';
-import PersonDetails from '../../features/activities/details/PersonDetails';
+import PersonForm from '../../features/people/form/PersonForm';
+import PersonDetails from '../../features/people/details/PersonDetails';
 import TestErrors from '../../features/errors/TestError';
 import Playground from '../../features/playground/Playground';
 import { ToastContainer } from 'react-toastify';

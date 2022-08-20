@@ -8,7 +8,7 @@ interface Props {
     person: Person
 }
 
-export default observer (function ActivityDetailedHeader({person}: Props) {
+export default observer (function PersonDetailedHeader({person}: Props) {
     return (
         <Segment.Group>
             <Segment clearing attached='bottom'>
