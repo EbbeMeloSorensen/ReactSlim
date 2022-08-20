@@ -9,7 +9,7 @@ namespace Application.Core
         public MappingProfiles()
         {
             CreateMap<Person, Person>();
-            CreateMap<Person, ActivityDto>();
+            CreateMap<Person, PersonDto>();
         }
     }
 }

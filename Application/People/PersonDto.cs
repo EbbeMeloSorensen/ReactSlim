@@ -1,6 +1,6 @@
 namespace Application.People
 {
-    public class ActivityDto
+    public class PersonDto
     {
         public Guid Id { get; set; }
         public string Title { get; set; } = null!;

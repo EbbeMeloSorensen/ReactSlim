@@ -9,12 +9,12 @@ namespace Application.People
 {
     public class List
     {
-        public class Query : IRequest<Result<PagedList<ActivityDto>>>
+        public class Query : IRequest<Result<PagedList<PersonDto>>>
         {
-            public ActivityParams Params { get; set; }
+            public PersonParams Params { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<PagedList<ActivityDto>>>
+        public class Handler : IRequestHandler<Query, Result<PagedList<PersonDto>>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -27,12 +27,12 @@ namespace Application.People
                 _userAccessor = userAccessor;
             }
 
-            public async Task<Result<PagedList<ActivityDto>>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<PagedList<PersonDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var query = _context.People
                     //.Where(d => d.Deadline >= request.Params.StartDate)
                     .OrderBy(d => d.Deadline)
-                    .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
+                    .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();
 
@@ -51,8 +51,8 @@ namespace Application.People
                     query = query.Where(x => x.Title.Contains(request.Params.Title));
                 }
 
-                return Result<PagedList<ActivityDto>>.Success(
-                    await PagedList<ActivityDto>.CreateAsync(query, request.Params.PageNumber,
+                return Result<PagedList<PersonDto>>.Success(
+                    await PagedList<PersonDto>.CreateAsync(query, request.Params.PageNumber,
                         request.Params.PageSize)
                 );
             }

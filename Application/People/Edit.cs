@@ -11,14 +11,14 @@ namespace Application.People
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Person Activity { get; set; }
+            public Person Person { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+                RuleFor(x => x.Person).SetValidator(new PersonValidator());
             }
         }
 
@@ -35,16 +35,16 @@ namespace Application.People
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _context.People.FindAsync(request.Activity.Id);
+                var person = await _context.People.FindAsync(request.Person.Id);
 
-                if (activity == null) return null;
+                if (person == null) return null;
 
                 // This is a smart way of mapping, so we avoid having to maintain our own mappers
-                _mapper.Map(request.Activity, activity);
+                _mapper.Map(request.Person, person);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to update activity");
+                if (!result) return Result<Unit>.Failure("Failed to update person");
 
                 return Result<Unit>.Success(Unit.Value);
             }

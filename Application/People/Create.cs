@@ -12,14 +12,14 @@ namespace Application.People
     {
         public class Command : IRequest<Result<Unit>>
         {
-            public Person Activity { get; set; }
+            public Person Person { get; set; }
         }
 
         public class CommandValidator : AbstractValidator<Command>
         {
             public CommandValidator()
             {
-                RuleFor(x => x.Activity).SetValidator(new ActivityValidator());
+                RuleFor(x => x.Person).SetValidator(new PersonValidator());
             }
         }
 
@@ -39,11 +39,11 @@ namespace Application.People
                 var user = await _context.Users.FirstOrDefaultAsync(
                     x => x.UserName == _userAccessor.GetUsername());
 
-                _context.People.Add(request.Activity);
+                _context.People.Add(request.Person);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to create activity");
+                if (!result) return Result<Unit>.Failure("Failed to create person");
 
                 return Result<Unit>.Success(Unit.Value);
             }

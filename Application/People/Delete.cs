@@ -22,15 +22,13 @@ namespace Application.People
 
             public async Task<Result<Unit>> Handle(Command request, CancellationToken cancellationToken)
             {
-                var activity = await _context.People.FindAsync(request.Id);
+                var person = await _context.People.FindAsync(request.Id);
 
-                //if (activity == null) return null;
-
-                _context.Remove(activity);
+                _context.Remove(person);
 
                 var result = await _context.SaveChangesAsync() > 0;
 
-                if (!result) return Result<Unit>.Failure("Failed to delete the activity");
+                if (!result) return Result<Unit>.Failure("Failed to delete the person");
 
                 return Result<Unit>.Success(Unit.Value);
             }

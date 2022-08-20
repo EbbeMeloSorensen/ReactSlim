@@ -2,7 +2,7 @@ using Application.Core;
 
 namespace Application.People
 {
-    public class ActivityParams : PagingParams
+    public class PersonParams : PagingParams
     {
         public bool NotCompleted { get; set; }
         public bool Completed { get; set; }

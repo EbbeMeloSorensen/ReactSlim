@@ -3,9 +3,9 @@ using FluentValidation;
 
 namespace Application.People
 {
-    public class ActivityValidator : AbstractValidator<Person>
+    public class PersonValidator : AbstractValidator<Person>
     {
-        public ActivityValidator()
+        public PersonValidator()
         {
             RuleFor(x => x.Title).NotEmpty();
             RuleFor(x => x.Description).NotEmpty();

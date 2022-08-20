@@ -10,12 +10,12 @@ namespace Application.People
 {
     public class Details
     {
-        public class Query : IRequest<Result<ActivityDto>>
+        public class Query : IRequest<Result<PersonDto>>
         {
             public Guid Id { get; set; }
         }
 
-        public class Handler : IRequestHandler<Query, Result<ActivityDto>>
+        public class Handler : IRequestHandler<Query, Result<PersonDto>>
         {
             private readonly DataContext _context;
             private readonly IMapper _mapper;
@@ -28,15 +28,15 @@ namespace Application.People
                 _userAccessor = userAccessor;
             }
             
-            public async Task<Result<ActivityDto>> Handle(Query request, CancellationToken cancellationToken)
+            public async Task<Result<PersonDto>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var person = await _context.People
-                    .ProjectTo<ActivityDto>(_mapper.ConfigurationProvider,
+                    .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
                         new {currentUsername = _userAccessor.GetUsername()})
                     .FirstOrDefaultAsync(x => x.Id == request.Id);
 
 
-                return Result<ActivityDto>.Success(person);
+                return Result<PersonDto>.Success(person);
             }
         }
     }
