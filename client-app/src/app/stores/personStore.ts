@@ -65,7 +65,7 @@ export default class PersonStore {
 
     get peopleByDate() {
         return Array.from(this.personRegistry.values()).sort((a, b) => 
-            a.deadline!.getTime() - b.deadline!.getTime());
+            a.birthday!.getTime() - b.birthday!.getTime());
     }
 
     loadPeople = async () => {
@@ -112,7 +112,7 @@ export default class PersonStore {
     }
 
     private setPerson = (person: Person) => {
-        person.deadline = new Date(person.deadline!);
+        person.birthday = new Date(person.birthday!);
         this.personRegistry.set(person.id, person);
     }
 

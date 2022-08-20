@@ -28,7 +28,7 @@ export default observer(function PersonDetailedInfo({person}: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <span>
-                            {format(person.deadline!, 'dd MMM yyyy h:mm aa')}
+                            {format(person.birthday!, 'dd MMM yyyy h:mm aa')}
                         </span>
                     </Grid.Column>
                 </Grid>
