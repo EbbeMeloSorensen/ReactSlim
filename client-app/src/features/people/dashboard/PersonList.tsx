@@ -9,7 +9,7 @@ export default observer(function PersonList() {
     const {peopleByDate} = personStore;
 
     return (
-        <List divided verticalAlign='middle'>
+        <List divided>
             {peopleByDate.map(person => (
                 <PersonListItem key={person.id} person={person} />
             ))}

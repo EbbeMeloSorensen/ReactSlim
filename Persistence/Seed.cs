@@ -40,7 +40,7 @@ namespace Persistence
                 var people = Enumerable
                     .Range(1, 100)
                     .Select(i => new Person{
-                        Title = $"Task {i}",
+                        Title = $"Person {i}",
                         Description = $"Description {i}",
                         Deadline = DateTime.UtcNow.AddDays(i - 20),
                         Completed = i % 3 == 0

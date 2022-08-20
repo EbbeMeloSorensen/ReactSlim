@@ -26,7 +26,7 @@ export default function PersonListItem({person}: Props) {
                 </List.Header>
             </List.Content>
             <List.Content floated='right'>
-                <Button.Group verticalAlign='Top Aligned'>
+                <Button.Group>
                     <Button
                         as={Link}
                         to={`/people/${person.id}`}

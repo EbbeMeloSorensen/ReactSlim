@@ -36,6 +36,9 @@ namespace Application.People
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();
 
+                //Console.WriteLine($"request.Params.Completed: {request.Params.Completed}");
+                //Console.WriteLine($"request.Params.NotCompleted: {request.Params.NotCompleted}");
+
                 if (request.Params.NotCompleted && !request.Params.Completed)
                 {
                     query = query.Where(x => !x.Completed);

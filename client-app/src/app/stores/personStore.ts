@@ -36,14 +36,23 @@ export default class PersonStore {
         })
     }
 
+    // Det, du gør i denne funktion, influerer på, hvilke Query Params der sendes med i http requestet
+    // til back enden. Check det f.eks. ved at aktivere dev tools i browseren og navigere hen til
+    // Network tabben
     setPredicate = (
         value: string,
         completed: boolean,
         notCompleted: boolean) => {
         this.resetPredicate();
-        this.predicate.set('title', value);
-        this.predicate.set('completed', completed);
-        this.predicate.set('notCompleted', notCompleted);
+        if (value.length > 0)
+        {
+            this.predicate.set('title', value);
+        }
+        if (completed != notCompleted)
+        {
+            this.predicate.set('completed', completed);
+            this.predicate.set('notCompleted', notCompleted);
+        }
     }
 
     get axiosParams() {
@@ -64,6 +73,7 @@ export default class PersonStore {
         try {
             console.log('Retrieving people...');
             const result = await agent.People.list(this.axiosParams);
+            console.log(result.data[0]);
             result.data.forEach(person => {
                 this.setPerson(person);
             })

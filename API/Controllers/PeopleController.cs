@@ -4,7 +4,7 @@ using Application.People;
 
 namespace API.Controllers
 {
-    public class PersonController : BaseApiController
+    public class PeopleController : BaseApiController
     {
         [HttpGet]
         public async Task<IActionResult> GetPeople([FromQuery] PersonParams param)

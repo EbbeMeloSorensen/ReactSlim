@@ -22,7 +22,7 @@ export default observer(function PersonDetailedInfo({person}: Props) {
                 </Grid>
             </Segment>
             <Segment attached>
-                <Grid verticalAlign='middle'>
+                <Grid>
                     <Grid.Column width={1}>
                         <Icon name='calendar' size='large' color='teal'/>
                     </Grid.Column>
@@ -34,7 +34,7 @@ export default observer(function PersonDetailedInfo({person}: Props) {
                 </Grid>
             </Segment>
             <Segment attached>
-                <Grid verticalAlign='middle'>
+                <Grid>
                     <Grid.Column width={1}>
                         <Icon name='check circle' size='large' color='teal'/>
                     </Grid.Column>
