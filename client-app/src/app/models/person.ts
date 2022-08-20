@@ -1,7 +1,7 @@
 export interface Person {
     id: string;
     title: string;
-    deadline: Date | null;
+    birthday: Date | null;
     description: string;
     completed: boolean;
 }
@@ -16,14 +16,14 @@ export class PersonFormValues {
     id?: string = undefined;
     title: string = '';
     description: string = '';
-    deadline: Date | null = null;
+    birthday: Date | null = null;
 
     constructor(person?: PersonFormValues) {
         if (person) {
             this.id = person.id;
             this.title = person.title;
             this.description = person.description;
-            this.deadline = person.deadline;
+            this.birthday = person.birthday;
         }
     }
 }

@@ -42,7 +42,7 @@ namespace Persistence
                     .Select(i => new Person{
                         Title = $"Person {i}",
                         Description = $"Description {i}",
-                        Deadline = DateTime.UtcNow.AddDays(i - 20),
+                        Birthday = DateTime.UtcNow.AddDays(i - 20),
                         Completed = i % 3 == 0
                     })
                     .ToList();

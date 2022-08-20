@@ -23,7 +23,7 @@ export default observer(function PersonForm() {
     const validationSchema = Yup.object({
         title: Yup.string().required('The person title is required'),
         description: Yup.string().required('The person description is required'),
-        deadline: Yup.string().required('Deadline is required').nullable()
+        birthday: Yup.string().required('Birthday is required').nullable()
     })
 
     useEffect(() => {
@@ -57,8 +57,8 @@ export default observer(function PersonForm() {
                     <MyTextInput name='title' placeholder='Title' />
                     <MyTextArea rows={3} placeholder='Description' name='description'/>
                     <MyDateInput
-                        placeholderText='Deadline'
-                        name='deadline'
+                        placeholderText='Birthday'
+                        name='birthday'
                         showTimeSelect
                         timeCaption='time'
                         dateFormat='MMMM d, yyyy h:mm aa'

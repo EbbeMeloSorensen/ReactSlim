@@ -30,8 +30,8 @@ namespace Application.People
             public async Task<Result<PagedList<PersonDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 var query = _context.People
-                    //.Where(d => d.Deadline >= request.Params.StartDate)
-                    .OrderBy(d => d.Deadline)
+                    //.Where(d => d.Birthday >= request.Params.StartDate)
+                    .OrderBy(d => d.Birthday)
                     .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();
