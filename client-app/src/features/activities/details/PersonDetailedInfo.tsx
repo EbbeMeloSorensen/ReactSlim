@@ -1,14 +1,14 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
 import {Segment, Grid, Icon} from 'semantic-ui-react'
-import {Activity} from "../../../app/models/activity";
+import {Person} from "../../../app/models/person";
 import {format} from 'date-fns';
 
 interface Props {
-    activity: Activity
+    person: Person
 }
 
-export default observer(function ActivityDetailedInfo({activity}: Props) {
+export default observer(function ActivityDetailedInfo({person}: Props) {
     return (
         <Segment.Group>
             <Segment attached='top'>
@@ -17,7 +17,7 @@ export default observer(function ActivityDetailedInfo({activity}: Props) {
                         <Icon size='large' color='teal' name='info'/>
                     </Grid.Column>
                     <Grid.Column width={15}>
-                        <p>{activity.description}</p>
+                        <p>{person.description}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>
@@ -28,7 +28,7 @@ export default observer(function ActivityDetailedInfo({activity}: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <span>
-                            {format(activity.deadline!, 'dd MMM yyyy h:mm aa')}
+                            {format(person.deadline!, 'dd MMM yyyy h:mm aa')}
                         </span>
                     </Grid.Column>
                 </Grid>
@@ -40,7 +40,7 @@ export default observer(function ActivityDetailedInfo({activity}: Props) {
                     </Grid.Column>
                     <Grid.Column width={15}>
                         <span>
-                            {activity.completed ? 'Completed' : 'Not completed'}
+                            {person.completed ? 'Completed' : 'Not completed'}
                         </span>
                     </Grid.Column>
                 </Grid>

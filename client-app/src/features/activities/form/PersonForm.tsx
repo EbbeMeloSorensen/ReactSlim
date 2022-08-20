@@ -10,15 +10,15 @@ import * as Yup from 'yup';
 import MyTextInput from "../../../app/common/form/MyTextInput";
 import MyTextArea from "../../../app/common/form/MyTextArea";
 import MyDateInput from "../../../app/common/form/MyDateInput";
-import { ActivityFormValues } from "../../../app/models/activity";
+import { PersonFormValues } from "../../../app/models/person";
 
-export default observer(function ActivityForm() {
+export default observer(function PersonForm() {
     const history = useHistory();
-    const {activityStore} = useStore();
-    const {createActivity, updateActivity, loadActivity, loadingInitial} = activityStore; // "Destructure the props we need from the activity store"
+    const {personStore} = useStore();
+    const {createPerson, updatePerson, loadPerson, loadingInitial} = personStore; // "Destructure the props we need from the activity store"
     const {id} = useParams<{id: string}>();
 
-    const [activity, setActivity] = useState<ActivityFormValues>(new ActivityFormValues());
+    const [activity, setActivity] = useState<PersonFormValues>(new PersonFormValues());
 
     const validationSchema = Yup.object({
         title: Yup.string().required('The activity title is required'),
@@ -27,26 +27,26 @@ export default observer(function ActivityForm() {
     })
 
     useEffect(() => {
-        if (id) loadActivity(id).then(activity => setActivity(new ActivityFormValues(activity)))
-    }, [id, loadActivity]);
+        if (id) loadPerson(id).then(person => setActivity(new PersonFormValues(person)))
+    }, [id, loadPerson]);
 
-    function handleFormSubmit(activity: ActivityFormValues) {
-        if (!activity.id) {
-            let newActivity = {
-                ...activity, // ("spread" operator)
+    function handleFormSubmit(person: PersonFormValues) {
+        if (!person.id) {
+            let newPerson = {
+                ...person, // ("spread" operator)
                 id: uuid()
             };
-            createActivity(newActivity).then(() => history.push(`/activities/${newActivity.id}`))
+            createPerson(newPerson).then(() => history.push(`/people/${newPerson.id}`))
         } else {
-            updateActivity(activity).then(() => history.push(`/activities/${activity.id}`))
+            updatePerson(person).then(() => history.push(`/people/${person.id}`))
         }
     }
 
-    if (loadingInitial) return <LoadingComponent content='Loading activity...' />
+    if (loadingInitial) return <LoadingComponent content='Loading person...' />
 
     return (
         <Segment clearing>
-            <Header content='Activity Details' sub color='teal' />
+            <Header content='Person Details' sub color='teal' />
             <Formik
             validationSchema={validationSchema}
                 enableReinitialize

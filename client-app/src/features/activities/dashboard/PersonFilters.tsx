@@ -4,7 +4,7 @@ import { Button, Header, Label } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function ActivityFilters() {
-    const {activityStore: {setPredicate}} = useStore();
+    const {personStore: {setPredicate}} = useStore();
 
     // Nogle states, vi gerne vil sende til activityStore, når man klikker på Search-knappen
     const [filter, setFilter] = useState('');

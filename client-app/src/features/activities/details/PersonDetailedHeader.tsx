@@ -2,19 +2,19 @@ import { observer } from 'mobx-react-lite';
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Button, Header, Segment } from 'semantic-ui-react'
-import { Activity } from "../../../app/models/activity";
+import { Person } from "../../../app/models/person";
 
 interface Props {
-    activity: Activity
+    person: Person
 }
 
-export default observer (function ActivityDetailedHeader({activity}: Props) {
+export default observer (function ActivityDetailedHeader({person}: Props) {
     return (
         <Segment.Group>
             <Segment clearing attached='bottom'>
-                <Header>{activity.title}</Header>
+                <Header>{person.title}</Header>
                 <Button as={Link} 
-                    to={`/manage/${activity.id}`}
+                    to={`/manage/${person.id}`}
                     color='orange'
                     floated='right'>
                     Update

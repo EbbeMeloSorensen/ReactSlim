@@ -1,11 +1,11 @@
 import { makeAutoObservable, reaction, runInAction } from "mobx";
 import agent from "../api/agent";
-import { Activity, ActivityFormValues } from "../models/activity";
+import { Person, PersonFormValues } from "../models/person";
 import { Pagination, PagingParams } from "../models/pagination";
 
-export default class ActivityStore {
-    activityRegistry = new Map<string, Activity>();
-    selectedActivity: Activity | undefined = undefined;
+export default class PersonStore {
+    personRegistry = new Map<string, Person>();
+    selectedPerson: Person | undefined = undefined;
     editMode = false;
     loading = false;
     loadingInitial = false;
@@ -20,8 +20,8 @@ export default class ActivityStore {
             () => this.predicate.keys(),
             () => {
                 this.pagingParams = new PagingParams();
-                this.activityRegistry.clear();
-                this.loadActivities();
+                this.personRegistry.clear();
+                this.loadPeople();
             }
         )
     }
@@ -54,18 +54,18 @@ export default class ActivityStore {
         return params;
     }
 
-    get activitiesByDate() {
-        return Array.from(this.activityRegistry.values()).sort((a, b) => 
+    get peopleByDate() {
+        return Array.from(this.personRegistry.values()).sort((a, b) => 
             a.deadline!.getTime() - b.deadline!.getTime());
     }
 
-    loadActivities = async () => {
+    loadPeople = async () => {
         this.loadingInitial = true;
         try {
-            console.log('Retrieving tasks...');
-            const result = await agent.Activities.list(this.axiosParams);
-            result.data.forEach(activity => {
-                this.setActivity(activity);
+            console.log('Retrieving people...');
+            const result = await agent.People.list(this.axiosParams);
+            result.data.forEach(person => {
+                this.setPerson(person);
             })
             this.setPagination(result.pagination);
             this.setLoadingInitial(false);
@@ -79,21 +79,21 @@ export default class ActivityStore {
         this.pagination = pagination;
     }
 
-    loadActivity = async (id: string) => {
-        let activity = this.getActivity(id);
-        if (activity) {
-            this.selectedActivity = activity;
-            return activity; 
+    loadPerson = async (id: string) => {
+        let person = this.getPerson(id);
+        if (person) {
+            this.selectedPerson = person;
+            return person; 
         } else {
             this.loadingInitial = true;
             try {
-                activity = await agent.Activities.details(id);
-                this.setActivity(activity);
+                person = await agent.People.details(id);
+                this.setPerson(person);
                 runInAction(() => {
-                    this.selectedActivity = activity;
+                    this.selectedPerson = person;
                 })
                 this.setLoadingInitial(false);
-                return activity; 
+                return person; 
             } catch (error) {
                 console.log(error);
                 this.setLoadingInitial(false);
@@ -101,40 +101,40 @@ export default class ActivityStore {
         }
     }
 
-    private setActivity = (activity: Activity) => {
-        activity.deadline = new Date(activity.deadline!);
-        this.activityRegistry.set(activity.id, activity);
+    private setPerson = (person: Person) => {
+        person.deadline = new Date(person.deadline!);
+        this.personRegistry.set(person.id, person);
     }
 
-    private getActivity = (id: string) => {
-        return this.activityRegistry.get(id);
+    private getPerson = (id: string) => {
+        return this.personRegistry.get(id);
     }
 
     setLoadingInitial = (state: boolean) => {
         this.loadingInitial = state;
     }
 
-    createActivity = async (activity: ActivityFormValues) => {
+    createPerson = async (person: PersonFormValues) => {
         try {
-            await agent.Activities.create(activity);
-            const newActivity = new Activity(activity);
-            this.setActivity(newActivity);
+            await agent.People.create(person);
+            const newPerson = new Person(person);
+            this.setPerson(newPerson);
             runInAction(() => {
-                this.selectedActivity = newActivity;
+                this.selectedPerson = newPerson;
             })
         } catch(error) {
             console.log(error);
         }
     }
 
-    updateActivity = async (activity: ActivityFormValues) => {
+    updatePerson = async (person: PersonFormValues) => {
         try {
-            await agent.Activities.update(activity);
+            await agent.People.update(person);
             runInAction(() => {
-                if (activity.id) {
-                    let updatedActivity = {...this.getActivity(activity.id), ...activity}
-                    this.activityRegistry.set(activity.id, updatedActivity as Activity);
-                    this.selectedActivity = updatedActivity as Activity;
+                if (person.id) {
+                    let updatedPerson = {...this.getPerson(person.id), ...person}
+                    this.personRegistry.set(person.id, updatedPerson as Person);
+                    this.selectedPerson = updatedPerson as Person;
                 }
             })
         } catch(error) {
@@ -142,12 +142,12 @@ export default class ActivityStore {
         }
     }
 
-    deleteActivity = async (id: string) => {
+    deletePerson = async (id: string) => {
         this.loading = true;
         try {
-            await agent.Activities.delete(id);
+            await agent.People.delete(id);
             runInAction(() => {
-                this.activityRegistry.delete(id);
+                this.personRegistry.delete(id);
                 this.loading = false;
             })
         } catch(error) {
@@ -161,9 +161,9 @@ export default class ActivityStore {
     updateAttendance = async () => {
         this.loading = true;
         try {
-            await agent.Activities.attend(this.selectedActivity!.id);
+            await agent.People.attend(this.selectedPerson!.id);
             runInAction(() => {
-                this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!)
+                this.personRegistry.set(this.selectedPerson!.id, this.selectedPerson!)
             })
         } catch (error) {
             console.log(error);
@@ -172,13 +172,13 @@ export default class ActivityStore {
         }
     }
 
-    cancelActivityToggle = async () => {
+    cancelPersonToggle = async () => {
         this.loading = true;
         try {
-            await agent.Activities.attend(this.selectedActivity!.id);
+            await agent.People.attend(this.selectedPerson!.id);
             runInAction(() => {
-                this.selectedActivity!.completed = !this.selectedActivity?.completed;
-                this.activityRegistry.set(this.selectedActivity!.id, this.selectedActivity!);
+                this.selectedPerson!.completed = !this.selectedPerson?.completed;
+                this.personRegistry.set(this.selectedPerson!.id, this.selectedPerson!);
             })
         } catch (error) {
             console.log(error);
@@ -187,7 +187,7 @@ export default class ActivityStore {
         }
     }
 
-    clearSelectedActivity = () => {
-        this.selectedActivity = undefined;
+    clearSelectedPerson = () => {
+        this.selectedPerson = undefined;
     }
 }

@@ -1,7 +1,7 @@
 import axios, { AxiosResponse, AxiosError } from 'axios';
 import { toast } from 'react-toastify';
 import { history } from '../..';
-import { Activity, ActivityFormValues } from '../models/activity';
+import { Person, PersonFormValues } from '../models/person';
 import { PaginatedResult } from '../models/pagination';
 import { User, UserFormValues } from '../models/user';
 import { store } from '../stores/store';
@@ -74,12 +74,12 @@ const requests = {
     del: <T> (url: string) => axios.delete<T>(url).then(responseBody),
 }
 
-const Activities = {
-    list: (params: URLSearchParams) => axios.get<PaginatedResult<Activity[]>>('/activities', {params})
+const People = {
+    list: (params: URLSearchParams) => axios.get<PaginatedResult<Person[]>>('/activities', {params})
         .then(responseBody),
-    details: (id: string) => requests.get<Activity>(`/activities/${id}`),
-    create: (activity: ActivityFormValues) => requests.post<void>('/activities', activity),
-    update: (activity: ActivityFormValues) => requests.put<void>(`/activities/${activity.id}`, activity),
+    details: (id: string) => requests.get<Person>(`/activities/${id}`),
+    create: (activity: PersonFormValues) => requests.post<void>('/activities', activity),
+    update: (activity: PersonFormValues) => requests.put<void>(`/activities/${activity.id}`, activity),
     delete: (id: string) => requests.del<void>(`/activities/${id}`),
     attend: (id: string) => requests.post<void>(`/activities/${id}/attend`, {})
 }
@@ -91,7 +91,7 @@ const Account = {
 }
 
 const agent = {
-    Activities,
+    People,
     Account
 }
 

@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Container } from 'semantic-ui-react';
 import NavBar from './NavBar';
-import ActivityDashboard from '../../features/activities/dashboard/ActivityDashboard';
+import PersonDashboard from '../../features/activities/dashboard/PersonDashboard';
 import { observer } from 'mobx-react-lite';
 import { Route, Switch, useLocation } from 'react-router-dom';
 import HomePage from '../../features/home/HomePage';
-import ActivityForm from '../../features/activities/form/ActivityForm';
-import ActivityDetails from '../../features/activities/details/ActivityDetails';
+import PersonForm from '../../features/activities/form/PersonForm';
+import PersonDetails from '../../features/activities/details/PersonDetails';
 import TestErrors from '../../features/errors/TestError';
 import Playground from '../../features/playground/Playground';
 import { ToastContainer } from 'react-toastify';
@@ -43,9 +43,9 @@ function App() {
             <NavBar />
             <Container style={{marginTop: '7em'}}>
               <Switch>
-                <PrivateRoute exact path='/activities' component={ActivityDashboard} />
-                <PrivateRoute path='/activities/:id' component={ActivityDetails} />
-                <PrivateRoute key={location.key} path={['/createActivity', '/manage/:id']} component={ActivityForm} />
+                <PrivateRoute exact path='/people' component={PersonDashboard} />
+                <PrivateRoute path='/people/:id' component={PersonDetails} />
+                <PrivateRoute key={location.key} path={['/createPerson', '/manage/:id']} component={PersonForm} />
                 <PrivateRoute path='/errors' component={TestErrors} />
                 <PrivateRoute path='/playground' component={Playground} />
                 <Route path='/server-error' component={ServerError} />

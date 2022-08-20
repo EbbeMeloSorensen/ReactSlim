@@ -4,32 +4,32 @@ import InfiniteScroll from "react-infinite-scroller";
 import { Grid, Loader } from "semantic-ui-react";
 import { PagingParams } from "../../../app/models/pagination";
 import { useStore } from "../../../app/stores/store";
-import ActivityFilters from "./ActivityFilters";
-import ActivityList from "./ActivityList";
-import ActivityListItemPlaceholder from "./ActivityListItemPlaceholder";
+import PersonFilters from "./PersonFilters";
+import PersonList from "./PersonList";
+import PersonListItemPlaceholder from "./PersonListItemPlaceholder";
 
-export default observer(function ActivityDashboard() {
-    const {activityStore} = useStore();
-    const {loadActivities, activityRegistry, setPagingParams, pagination} = activityStore;
+export default observer(function PersonDashboard() {
+    const {personStore} = useStore();
+    const {loadPeople, personRegistry, setPagingParams, pagination} = personStore;
     const [loadingNext, setLoadingNext] = useState(false);
   
     function handleGetNext() {
         setLoadingNext(true);
         setPagingParams(new PagingParams(pagination!.currentPage + 1))
-        loadActivities().then(() => setLoadingNext(false));
+        loadPeople().then(() => setLoadingNext(false));
     }
 
     useEffect(() => {
-      if (activityRegistry.size <= 1) loadActivities();
-    }, [activityRegistry.size, loadActivities])
+      if (personRegistry.size <= 1) loadPeople();
+    }, [personRegistry.size, loadPeople])
 
     return (
         <Grid>
             <Grid.Column width='10'>
-                {activityStore.loadingInitial && !loadingNext ? (
+                {personStore.loadingInitial && !loadingNext ? (
                     <>
-                        <ActivityListItemPlaceholder />
-                        <ActivityListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
                     </>
                 ) : (
                         <InfiniteScroll
@@ -38,12 +38,12 @@ export default observer(function ActivityDashboard() {
                             hasMore={!loadingNext && !!pagination && pagination.currentPage < pagination.totalPages}
                             initialLoad={false}
                         >
-                            <ActivityList />
+                            <PersonList />
                         </InfiniteScroll>
                     )}
             </Grid.Column>
             <Grid.Column width='6'>
-                <ActivityFilters />
+                <PersonFilters />
             </Grid.Column>
             <Grid.Column width={10}>
                <Loader active={loadingNext} />
