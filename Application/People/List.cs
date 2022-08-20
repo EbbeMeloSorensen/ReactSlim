@@ -49,9 +49,9 @@ namespace Application.People
                     query = query.Where(x => x.Completed);
                 }
 
-                if (!string.IsNullOrEmpty(request.Params.Title))
+                if (!string.IsNullOrEmpty(request.Params.FirstName))
                 {
-                    query = query.Where(x => x.Title.Contains(request.Params.Title));
+                    query = query.Where(x => x.FirstName.Contains(request.Params.FirstName));
                 }
 
                 return Result<PagedList<PersonDto>>.Success(

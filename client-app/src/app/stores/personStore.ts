@@ -46,7 +46,7 @@ export default class PersonStore {
         this.resetPredicate();
         if (value.length > 0)
         {
-            this.predicate.set('title', value);
+            this.predicate.set('firstName', value);
         }
         if (completed != notCompleted)
         {

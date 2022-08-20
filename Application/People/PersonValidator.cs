@@ -7,7 +7,7 @@ namespace Application.People
     {
         public PersonValidator()
         {
-            RuleFor(x => x.Title).NotEmpty();
+            RuleFor(x => x.FirstName).NotEmpty();
             RuleFor(x => x.Description).NotEmpty();
             RuleFor(x => x.Birthday).NotEmpty();
         }

@@ -7,6 +7,6 @@ namespace Application.People
         public bool NotCompleted { get; set; }
         public bool Completed { get; set; }
         //public DateTime StartDate { get; set; } = DateTime.UtcNow;
-        public string? Title { get; set; }
+        public string? FirstName { get; set; }
     }
 }

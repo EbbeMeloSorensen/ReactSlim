@@ -37,7 +37,7 @@ export default observer(function PeopleFilters() {
             />
             <br></br>
 
-            <Label>Title contains</Label>
+            <Label>First Name contains</Label>
                 <input value={filter} onChange={e => setFilter(e.target.value)}
             />
             <Button
