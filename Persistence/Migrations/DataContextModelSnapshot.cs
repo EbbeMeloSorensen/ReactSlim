@@ -91,11 +91,23 @@ namespace Persistence.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Address")
+                        .HasColumnType("TEXT");
+
                     b.Property<DateTime?>("Birthday")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("City")
                         .HasColumnType("TEXT");
 
                     b.Property<bool?>("Completed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
@@ -104,7 +116,13 @@ namespace Persistence.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Nickname")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Surname")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ZipCode")
                         .HasColumnType("TEXT");
 
                     b.HasKey("Id");
