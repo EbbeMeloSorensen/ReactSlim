@@ -1,3 +1,4 @@
+using System.Linq;
 using Application.Core;
 using Application.Interfaces;
 using AutoMapper;
@@ -36,21 +37,23 @@ namespace Application.People
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();
 
-                //Console.WriteLine($"request.Params.Completed: {request.Params.Completed}");
-                //Console.WriteLine($"request.Params.NotCompleted: {request.Params.NotCompleted}");
-
-                if (request.Params.NotCompleted && !request.Params.Completed)
+                if (!string.IsNullOrEmpty(request.Params.Completed))
                 {
-                    query = query.Where(x => x.Completed.HasValue && !x.Completed.Value);
-                }
+                    var filterAsListOfStrings = new List<string>(request.Params.Completed.Split("|"));
 
-                if (request.Params.Completed && !request.Params.NotCompleted)
-                {
-                    query = query.Where(x => x.Completed.HasValue && x.Completed.Value);
-                }
+                    if (filterAsListOfStrings.Count == 1 && filterAsListOfStrings.Single() == "null")
+                    {
+                        query = query.Where(x => !x.Completed.HasValue);
+                    }
+                    else
+                    {
+                        var filter = ConvertToBoolList(filterAsListOfStrings);
 
-                //query = query.Where(x => x.FirstName.Contains("Hugo"));
-                //query = query.Where(x => x.Completed.HasValue && x.Completed.Value);
+                        query = filterAsListOfStrings.Contains("null")
+                            ? query = query.Where(x => !x.Completed.HasValue || filter.Contains(x.Completed.Value))
+                            : query = query.Where(x => x.Completed.HasValue && filter.Contains(x.Completed.Value));
+                    }
+                }
 
                 if (!string.IsNullOrEmpty(request.Params.FirstName))
                 {
@@ -61,6 +64,23 @@ namespace Application.People
                     await PagedList<PersonDto>.CreateAsync(query, request.Params.PageNumber,
                         request.Params.PageSize)
                 );
+            }
+
+            private List<bool> ConvertToBoolList(IEnumerable<string> items)
+            {
+                var result = new List<bool>();
+
+                if (items.Contains("true"))
+                {
+                    result.Add(true);
+                }
+
+                if (items.Contains("false"))
+                {
+                    result.Add(false);
+                }
+
+                return result;
             }
         }
     }

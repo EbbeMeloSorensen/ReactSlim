@@ -11,7 +11,7 @@ export default class PersonStore {
     loadingInitial = false;
     pagination: Pagination | null = null;
     pagingParams = new PagingParams();
-    predicate = new Map().set('all', true);
+    predicate = new Map();
 
     constructor() {
         makeAutoObservable(this);
@@ -42,16 +42,25 @@ export default class PersonStore {
     setPredicate = (
         value: string,
         completed: boolean,
-        notCompleted: boolean) => {
+        notCompleted: boolean,
+        completedUspecified: boolean) => {
         this.resetPredicate();
+
         if (value.length > 0)
         {
             this.predicate.set('firstName', value);
         }
-        if (completed != notCompleted)
+
+        if (completed || notCompleted || completedUspecified)
         {
-            this.predicate.set('completed', completed);
-            this.predicate.set('notCompleted', notCompleted);
+            let completedFilter = new Array<string>();
+            if (completed) completedFilter.push("true");
+            if (notCompleted) completedFilter.push("false");
+            if (completedUspecified) completedFilter.push("null");
+            
+            console.log(completedFilter);
+    
+            this.predicate.set('completed', completedFilter.join('|'));
         }
     }
 
@@ -163,35 +172,6 @@ export default class PersonStore {
             runInAction(() => {
                 this.loading = false;
             })
-        }
-    }
-
-    updateAttendance = async () => {
-        this.loading = true;
-        try {
-            await agent.People.attend(this.selectedPerson!.id);
-            runInAction(() => {
-                this.personRegistry.set(this.selectedPerson!.id, this.selectedPerson!)
-            })
-        } catch (error) {
-            console.log(error);
-        } finally {
-            runInAction(() => this.loading = false);
-        }
-    }
-
-    cancelPersonToggle = async () => {
-        this.loading = true;
-        try {
-            await agent.People.attend(this.selectedPerson!.id);
-            runInAction(() => {
-                this.selectedPerson!.completed = !this.selectedPerson?.completed;
-                this.personRegistry.set(this.selectedPerson!.id, this.selectedPerson!);
-            })
-        } catch (error) {
-            console.log(error);
-        } finally {
-            runInAction(() => this.loading = false);
         }
     }
 

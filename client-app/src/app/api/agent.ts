@@ -80,8 +80,7 @@ const People = {
     details: (id: string) => requests.get<Person>(`/people/${id}`),
     create: (person: PersonFormValues) => requests.post<void>('/people', person),
     update: (person: PersonFormValues) => requests.put<void>(`/people/${person.id}`, person),
-    delete: (id: string) => requests.del<void>(`/people/${id}`),
-    attend: (id: string) => requests.post<void>(`/people/${id}/attend`, {})
+    delete: (id: string) => requests.del<void>(`/people/${id}`)
 }
 
 const Account = {

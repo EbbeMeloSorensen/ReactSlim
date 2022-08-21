@@ -10,36 +10,43 @@ export default observer(function PeopleFilters() {
     const [filter, setFilter] = useState('');
     const [completed, setCompleted] = useState(false);
     const [notCompleted, setNotCompleted] = useState(true);
+    const [completedUnspecified, setCompletedUnspecified] = useState(false);
 
     function handleClick() {
-        console.log(filter);
-        setPredicate(filter, completed, notCompleted);
+        setPredicate(filter, completed, notCompleted, completedUnspecified);
     }
 
     return (
         <>
             <Header icon='filter' attached color='teal' content='Filters' />
-            <br></br>
 
-            <Label>Completed</Label>
+            <Header>Name</Header>
+            <Label>First Name contains</Label>
+                <input value={filter} onChange={e => setFilter(e.target.value)}
+            />
+
+            <Header>Completed</Header>
+            <Label>Yes</Label>
                 <input
                     type='checkbox'
                     defaultChecked={completed}
                     onChange={() => setCompleted(!completed)}
             />
             <br></br>
-
-            <Label>Not Completed</Label>
+            <Label>No</Label>
                 <input
                     type='checkbox'
                     defaultChecked={notCompleted}
                     onChange={() => setNotCompleted(!notCompleted)}
             />
             <br></br>
-
-            <Label>First Name contains</Label>
-                <input value={filter} onChange={e => setFilter(e.target.value)}
+            <Label>Unspecified</Label>
+                <input
+                    type='checkbox'
+                    defaultChecked={completedUnspecified}
+                    onChange={() => setCompletedUnspecified(!completedUnspecified)}
             />
+
             <Button
                 floated="right"
                 content='Search'
