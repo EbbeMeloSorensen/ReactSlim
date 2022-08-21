@@ -12,7 +12,7 @@ export default observer (function PersonDetailedHeader({person}: Props) {
     return (
         <Segment.Group>
             <Segment clearing attached='bottom'>
-                <Header>{person.firstName}</Header>
+                <Header>{person.firstName} {person.surname}</Header>
                 <Button as={Link} 
                     to={`/manage/${person.id}`}
                     color='orange'

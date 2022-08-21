@@ -71,9 +71,7 @@ export default class PersonStore {
     loadPeople = async () => {
         this.loadingInitial = true;
         try {
-            console.log('Retrieving people...');
             const result = await agent.People.list(this.axiosParams);
-            console.log(result.data[0]);
             result.data.forEach(person => {
                 this.setPerson(person);
             })

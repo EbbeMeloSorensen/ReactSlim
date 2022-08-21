@@ -22,7 +22,7 @@ export default function PersonListItem({person}: Props) {
         <List.Item>
             <List.Content>
                 <List.Header as={Link} to={`/people/${person.id}`}>
-                    {person.firstName}
+                    {person.firstName} {person.surname}
                 </List.Header>
             </List.Content>
             <List.Content floated='right'>

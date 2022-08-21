@@ -21,9 +21,10 @@ export default observer(function PersonForm() {
     const [person, setPerson] = useState<PersonFormValues>(new PersonFormValues());
 
     const validationSchema = Yup.object({
-        firstName: Yup.string().required('The first name of the person is required'),
-        description: Yup.string().required('The person description is required'),
-        birthday: Yup.string().required('Birthday is required').nullable()
+        firstName: Yup.string().required('The first name of the person is required')
+        //surname: Yup.string().required('The surname of the person is required'),
+        //description: Yup.string().required('The person description is required'),
+        //birthday: Yup.string().required('Birthday is required').nullable()
     })
 
     useEffect(() => {
@@ -55,6 +56,7 @@ export default observer(function PersonForm() {
                 {({ handleSubmit, isValid, isSubmitting, dirty }) => (
                 <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
                     <MyTextInput name='firstName' placeholder='First Name' />
+                    <MyTextInput name='surname' placeholder='Surname' />
                     <MyTextArea rows={3} placeholder='Description' name='description'/>
                     <MyDateInput
                         placeholderText='Birthday'

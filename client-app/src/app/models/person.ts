@@ -1,6 +1,7 @@
 export interface Person {
     id: string;
     firstName: string;
+    surname: string;
     birthday: Date | null;
     description: string;
     completed: boolean;
@@ -15,6 +16,7 @@ export class Person implements Person {
 export class PersonFormValues {
     id?: string = undefined;
     firstName: string = '';
+    surname: string = '';
     description: string = '';
     birthday: Date | null = null;
 
@@ -22,6 +24,7 @@ export class PersonFormValues {
         if (person) {
             this.id = person.id;
             this.firstName = person.firstName;
+            this.surname = person.surname;
             this.description = person.description;
             this.birthday = person.birthday;
         }

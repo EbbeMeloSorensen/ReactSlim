@@ -37,15 +37,200 @@ namespace Persistence
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
 
-                var people = Enumerable
-                    .Range(1, 100)
-                    .Select(i => new Person{
-                        FirstName = $"Person {i}",
-                        Description = $"Description {i}",
-                        Birthday = DateTime.UtcNow.AddDays(i - 20),
-                        Completed = i % 3 == 0
-                    })
-                    .ToList();
+                // var people = Enumerable
+                //     .Range(1, 100)
+                //     .Select(i => new Person{
+                //         FirstName = $"Anders {i}",
+                //         Surname = $"And {i}",
+                //         Description = $"Description {i}",
+                //         Birthday = DateTime.UtcNow.AddDays(i - 20),
+                //         Completed = i % 3 == 0
+                //     })
+                //     .ToList();
+
+                var people = new List<Person>
+                {
+                    new Person
+                    {
+                        FirstName = "Hugo",
+                        Completed = true
+                    },
+                    new Person
+                    {
+                        FirstName = "Hannibal",
+                        Completed = false
+                    },
+                    new Person
+                    {
+                        FirstName = "Ludvig"
+                    },
+                    new Person
+                    {
+                        FirstName = "Klaus",
+                        Surname = "Berntsen"
+                    },
+                    new Person
+                    {
+                        FirstName = "Carl",
+                        Surname = "Theodor Zahle",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1909-1910 og 1913-1920"
+                    },
+                    new Person
+                    {
+                        FirstName = "Otto",
+                        Surname = "Liebe",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1920"
+                    },
+                    new Person
+                    {
+                        FirstName = "Michael",
+                        Surname = "Petersen Friis",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1920"
+                    },
+                    new Person
+                    {
+                        FirstName = "Niels",
+                        Surname = "Neergaard",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1920-1924"
+                    },
+                    new Person
+                    {
+                        FirstName = "Thomas",
+                        Surname = "Madsen-Mygdal",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1926-1929"
+                    },
+                    new Person
+                    {
+                        FirstName = "Thorvald",
+                        Surname = "Stauning",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1924-1926 og 1929-1942"
+                    },
+                    new Person
+                    {
+                        FirstName = "Erik",
+                        Surname = "Scavenius",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1942-1943"
+                    },
+                    new Person
+                    {
+                        FirstName = "Vilhelm",
+                        Surname = "Buhl",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1942 og 1945"
+                    },
+                    new Person
+                    {
+                        FirstName = "Knud",
+                        Surname = "Kristensen",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1945-1947"
+                    },
+                    new Person
+                    {
+                        FirstName = "Erik",
+                        Surname = "Eriksen",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1950-1953"
+                    },
+                    new Person
+                    {
+                        FirstName = "Hans",
+                        Surname = "Hedtoft",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1947-1950 og 1953-1955"
+                    },
+                    new Person
+                    {
+                        FirstName = "Hans Christian",
+                        Surname = "Svane Hansen",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1955-1960"
+                    },
+                    new Person
+                    {
+                        FirstName = "Viggo",
+                        Surname = "Kampmann",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1960-1962"
+                    },
+                    new Person
+                    {
+                        FirstName = "Hilmar",
+                        Surname = "Baunsgaard",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1968-1971"
+                    },
+                    new Person
+                    {
+                        FirstName = "Jens Otto",
+                        Surname = "Krag",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1962-1968 og 1975-1982"
+                    },
+                    new Person
+                    {
+                        FirstName = "Poul",
+                        Surname = "Hartling",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1973-1975"
+                    },
+                    new Person
+                    {
+                        FirstName = "Anker",
+                        Surname = "Jørgensen",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1972-1973 og 1975-1982"
+                    },
+                    new Person
+                    {
+                        FirstName = "Poul",
+                        Surname = "Schlüter",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1982-1993"
+                    },
+                    new Person
+                    {
+                        FirstName = "Poul",
+                        Surname = "Nyrup",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "1993-2001"
+                    },
+                    new Person
+                    {
+                        FirstName = "Anders",
+                        Surname = "Fogh Rasmussen",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "2001-2009"
+                    },
+                    new Person
+                    {
+                        FirstName = "Helle",
+                        Surname = "Thorning Schmidt",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "2011-2015"
+                    },
+                    new Person
+                    {
+                        FirstName = "Lars",
+                        Surname = "Løkke Rasmussen",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "2009-2011 og 2015-2019"
+                    },
+                    new Person
+                    {
+                        FirstName = "Mette",
+                        Surname = "Frederiksen",
+                        Birthday = new DateTime(1956, 4, 27),
+                        Description = "2019-"
+                    }
+                };
 
                 await context.People.AddRangeAsync(people);
                 await context.SaveChangesAsync();

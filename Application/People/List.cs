@@ -41,13 +41,16 @@ namespace Application.People
 
                 if (request.Params.NotCompleted && !request.Params.Completed)
                 {
-                    query = query.Where(x => !x.Completed);
+                    query = query.Where(x => x.Completed.HasValue && !x.Completed.Value);
                 }
 
                 if (request.Params.Completed && !request.Params.NotCompleted)
                 {
-                    query = query.Where(x => x.Completed);
+                    query = query.Where(x => x.Completed.HasValue && x.Completed.Value);
                 }
+
+                //query = query.Where(x => x.FirstName.Contains("Hugo"));
+                //query = query.Where(x => x.Completed.HasValue && x.Completed.Value);
 
                 if (!string.IsNullOrEmpty(request.Params.FirstName))
                 {
