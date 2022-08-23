@@ -86,11 +86,11 @@ export default observer(function PersonDetailedInfo({person}: Props) {
             <Segment attached>
                 <Grid>
                     <Grid.Column width={2}>
-                        Completed
+                        Dead
                     </Grid.Column>
                     <Grid.Column width={14}>
                         <span>
-                            {person.completed === null ? '' : person.completed === true ? 'Yes' : 'No'}
+                            {person.dead === null ? '' : person.dead === true ? 'Yes' : 'No'}
                         </span>
                     </Grid.Column>
                 </Grid>

@@ -63,7 +63,7 @@ namespace Persistence.Migrations
                     Birthday = table.Column<DateTime>(type: "TEXT", nullable: true),
                     Category = table.Column<string>(type: "TEXT", nullable: true),
                     Description = table.Column<string>(type: "TEXT", nullable: true),
-                    Completed = table.Column<bool>(type: "INTEGER", nullable: true),
+                    Dead = table.Column<bool>(type: "INTEGER", nullable: true),
                     Created = table.Column<DateTime>(type: "TEXT", nullable: false)
                 },
                 constraints: table =>

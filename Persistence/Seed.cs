@@ -37,17 +37,6 @@ namespace Persistence
                     await userManager.CreateAsync(user, "Pa$$w0rd");
                 }
 
-                // var people = Enumerable
-                //     .Range(1, 100)
-                //     .Select(i => new Person{
-                //         FirstName = $"Anders {i}",
-                //         Surname = $"And {i}",
-                //         Description = $"Description {i}",
-                //         Birthday = DateTime.UtcNow.AddDays(i - 20),
-                //         Completed = i % 3 == 0
-                //     })
-                //     .ToList();
-
                 var now = DateTime.UtcNow;
 
                 var people = new List<Person>
@@ -56,13 +45,13 @@ namespace Persistence
                     new Person
                     {
                         FirstName = "Hugo",
-                        Completed = true,
+                        Dead = true,
                         Created = now
                     },
                     new Person
                     {
                         FirstName = "Hannibal",
-                        Completed = false,
+                        Dead = false,
                         Created = now
                     },
                     new Person
@@ -264,7 +253,7 @@ namespace Persistence
                         Birthday = new DateTime(1975, 7, 24),
                         Category = "Politik",
                         Description = "2019-",
-                        Completed = true,
+                        Dead = true,
                         Created = now
                     }
                 };

@@ -11,7 +11,7 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220821114205_InitialMigration")]
+    [Migration("20220823160753_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -105,11 +105,11 @@ namespace Persistence.Migrations
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool?>("Completed")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool?>("Dead")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");

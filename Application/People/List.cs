@@ -37,21 +37,21 @@ namespace Application.People
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();
 
-                if (!string.IsNullOrEmpty(request.Params.Completed))
+                if (!string.IsNullOrEmpty(request.Params.Dead))
                 {
-                    var filterAsListOfStrings = new List<string>(request.Params.Completed.Split("|"));
+                    var filterAsListOfStrings = new List<string>(request.Params.Dead.Split("|"));
 
                     if (filterAsListOfStrings.Count == 1 && filterAsListOfStrings.Single() == "null")
                     {
-                        query = query.Where(x => !x.Completed.HasValue);
+                        query = query.Where(x => !x.Dead.HasValue);
                     }
                     else
                     {
                         var filter = ConvertToBoolList(filterAsListOfStrings);
 
                         query = filterAsListOfStrings.Contains("null")
-                            ? query = query.Where(x => !x.Completed.HasValue || filter.Contains(x.Completed.Value))
-                            : query = query.Where(x => x.Completed.HasValue && filter.Contains(x.Completed.Value));
+                            ? query = query.Where(x => !x.Dead.HasValue || filter.Contains(x.Dead.Value))
+                            : query = query.Where(x => x.Dead.HasValue && filter.Contains(x.Dead.Value));
                     }
                 }
 

@@ -12,7 +12,7 @@ namespace Domain
         public DateTime? Birthday { get; set; }
         public string? Category { get; set; }
         public string? Description { get; set; }
-        public bool? Completed { get; set; }
+        public bool? Dead { get; set; }
         public DateTime Created { get; set; }
     }
 }

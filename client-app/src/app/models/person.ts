@@ -9,7 +9,7 @@ export interface Person {
     birthday: Date | null;
     category: string;
     description: string;
-    completed: boolean | null;
+    dead: boolean | null;
     created: Date;
 }
 
@@ -30,7 +30,7 @@ export class PersonFormValues {
     birthday: Date | null = null;
     category: string = '';
     description: string = '';
-    completed: boolean | null = null;
+    dead: boolean | null = null;
 
     constructor(person?: PersonFormValues) {
         if (person) {
@@ -44,7 +44,7 @@ export class PersonFormValues {
             this.birthday = person.birthday;
             this.category = person.category;
             this.description = person.description;
-            this.completed = person.completed;
+            this.dead = person.dead;
         }
     }
 }

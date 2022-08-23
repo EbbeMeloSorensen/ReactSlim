@@ -15,6 +15,7 @@ Done:
   o Kald APIet med filteret som specificeret i guien (OK)
 
 Todo:
+* Change the Completed attribute of person to Dead
 * Hvorfor laver den fødselsdagen om fra 24. juli til 23. juli??
   -> Hmm når du vælger en dato, skrives den ned som en anden dato...
 * Færdig med Read

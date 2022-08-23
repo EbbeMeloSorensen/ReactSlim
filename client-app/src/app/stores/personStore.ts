@@ -41,9 +41,9 @@ export default class PersonStore {
     // Network tabben
     setPredicate = (
         value: string,
-        completed: boolean,
-        notCompleted: boolean,
-        completedUspecified: boolean) => {
+        dead: boolean,
+        notDead: boolean,
+        deadUnspecified: boolean) => {
         this.resetPredicate();
 
         if (value.length > 0)
@@ -51,16 +51,16 @@ export default class PersonStore {
             this.predicate.set('firstName', value);
         }
 
-        if (completed || notCompleted || completedUspecified)
+        if (dead || notDead || deadUnspecified)
         {
-            let completedFilter = new Array<string>();
-            if (completed) completedFilter.push("true");
-            if (notCompleted) completedFilter.push("false");
-            if (completedUspecified) completedFilter.push("null");
+            let deadFilter = new Array<string>();
+            if (dead) deadFilter.push("true");
+            if (notDead) deadFilter.push("false");
+            if (deadUnspecified) deadFilter.push("null");
             
-            console.log(completedFilter);
+            console.log(deadFilter);
     
-            this.predicate.set('completed', completedFilter.join('|'));
+            this.predicate.set('dead', deadFilter.join('|'));
         }
     }
 

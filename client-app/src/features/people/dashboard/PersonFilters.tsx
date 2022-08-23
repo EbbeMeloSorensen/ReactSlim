@@ -8,12 +8,12 @@ export default observer(function PeopleFilters() {
 
     // Nogle states, vi gerne vil sende til personStore, når man klikker på Search-knappen
     const [filter, setFilter] = useState('');
-    const [completed, setCompleted] = useState(false);
-    const [notCompleted, setNotCompleted] = useState(true);
-    const [completedUnspecified, setCompletedUnspecified] = useState(false);
+    const [dead, setDead] = useState(false);
+    const [notDead, setNotDead] = useState(true);
+    const [deadUnspecified, setDeadUnspecified] = useState(false);
 
     function handleClick() {
-        setPredicate(filter, completed, notCompleted, completedUnspecified);
+        setPredicate(filter, dead, notDead, deadUnspecified);
     }
 
     return (
@@ -25,27 +25,27 @@ export default observer(function PeopleFilters() {
                 <input value={filter} onChange={e => setFilter(e.target.value)}
             />
 
-            <Header>Completed</Header>
+            <Header>Dead</Header>
             <Form>
                 <Form.Field>
                     <Checkbox
                         label='Yes'
-                        defaultChecked={completed}
-                        onChange={() => setCompleted(!completed)}
+                        defaultChecked={dead}
+                        onChange={() => setDead(!dead)}
                     />
                 </Form.Field>
                 <Form.Field>
                     <Checkbox
                         label='No'
-                        defaultChecked={notCompleted}
-                        onChange={() => setNotCompleted(!notCompleted)}
+                        defaultChecked={notDead}
+                        onChange={() => setNotDead(!notDead)}
                     />
                 </Form.Field>
                 <Form.Field>
                     <Checkbox
                         label='Unspecified'
-                        defaultChecked={completedUnspecified}
-                        onChange={() => setCompletedUnspecified(!completedUnspecified)}
+                        defaultChecked={deadUnspecified}
+                        onChange={() => setDeadUnspecified(!deadUnspecified)}
                     />
                 </Form.Field>
             </Form>

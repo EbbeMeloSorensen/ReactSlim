@@ -103,11 +103,11 @@ namespace Persistence.Migrations
                     b.Property<string>("City")
                         .HasColumnType("TEXT");
 
-                    b.Property<bool?>("Completed")
-                        .HasColumnType("INTEGER");
-
                     b.Property<DateTime>("Created")
                         .HasColumnType("TEXT");
+
+                    b.Property<bool?>("Dead")
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .HasColumnType("TEXT");
