@@ -1,6 +1,6 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { Button, Header, Label } from "semantic-ui-react";
+import { Button, Checkbox, Form, Header, Label } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function PeopleFilters() {
@@ -26,26 +26,29 @@ export default observer(function PeopleFilters() {
             />
 
             <Header>Completed</Header>
-            <Label>Yes</Label>
-                <input
-                    type='checkbox'
-                    defaultChecked={completed}
-                    onChange={() => setCompleted(!completed)}
-            />
-            <br></br>
-            <Label>No</Label>
-                <input
-                    type='checkbox'
-                    defaultChecked={notCompleted}
-                    onChange={() => setNotCompleted(!notCompleted)}
-            />
-            <br></br>
-            <Label>Unspecified</Label>
-                <input
-                    type='checkbox'
-                    defaultChecked={completedUnspecified}
-                    onChange={() => setCompletedUnspecified(!completedUnspecified)}
-            />
+            <Form>
+                <Form.Field>
+                    <Checkbox
+                        label='Yes'
+                        defaultChecked={completed}
+                        onChange={() => setCompleted(!completed)}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <Checkbox
+                        label='No'
+                        defaultChecked={notCompleted}
+                        onChange={() => setNotCompleted(!notCompleted)}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <Checkbox
+                        label='Unspecified'
+                        defaultChecked={completedUnspecified}
+                        onChange={() => setCompletedUnspecified(!completedUnspecified)}
+                    />
+                </Form.Field>
+            </Form>
 
             <Button
                 floated="right"

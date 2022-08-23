@@ -52,6 +52,7 @@ namespace Persistence
 
                 var people = new List<Person>
                 {
+                    /*
                     new Person
                     {
                         FirstName = "Hugo",
@@ -251,6 +252,7 @@ namespace Persistence
                         Description = "2009-2011 og 2015-2019",
                         Created = now
                     },
+                    */
                     new Person
                     {
                         FirstName = "Mette",
@@ -259,9 +261,10 @@ namespace Persistence
                         Address = "Kartoffelrækkerne",
                         ZipCode = "2100",
                         City = "Copenhagen",
-                        Birthday = new DateTime(1956, 4, 27),
+                        Birthday = new DateTime(1975, 7, 24),
                         Category = "Politik",
                         Description = "2019-",
+                        Completed = true,
                         Created = now
                     }
                 };

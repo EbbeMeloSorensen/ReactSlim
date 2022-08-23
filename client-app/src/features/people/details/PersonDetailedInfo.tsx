@@ -11,36 +11,86 @@ interface Props {
 export default observer(function PersonDetailedInfo({person}: Props) {
     return (
         <Segment.Group>
-            <Segment attached='top'>
-                <Grid>
-                    <Grid.Column width={1}>
-                        <Icon size='large' color='teal' name='info'/>
+            <Segment>
+                <Grid attached='top'>
+                    <Grid.Column width={2}>
+                        Address
                     </Grid.Column>
-                    <Grid.Column width={15}>
+                    <Grid.Column width={14}>
+                        <p>{person.address}</p>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid>
+                    <Grid.Column width={2}>
+                        Zip Code
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                        <p>{person.zipCode}</p>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid>
+                    <Grid.Column width={2}>
+                        City
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                        <p>{person.city}</p>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid>
+                    <Grid.Column width={2}>
+                        Nickname
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                        <p>{person.nickname}</p>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid>
+                    <Grid.Column width={2}>
+                        Birthday
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                        <span>
+                            {person.birthday === null ? '' : format(person.birthday, 'dd MMM yyyy h:mm aa')}
+                        </span>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid>
+                    <Grid.Column width={2}>
+                        Category
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                        <p>{person.category}</p>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid>
+                    <Grid.Column width={2}>
+                        Description
+                    </Grid.Column>
+                    <Grid.Column width={14}>
                         <p>{person.description}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>
             <Segment attached>
                 <Grid>
-                    <Grid.Column width={1}>
-                        <Icon name='calendar' size='large' color='teal'/>
+                    <Grid.Column width={2}>
+                        Completed
                     </Grid.Column>
-                    <Grid.Column width={15}>
+                    <Grid.Column width={14}>
                         <span>
-                            {format(person.birthday!, 'dd MMM yyyy h:mm aa')}
-                        </span>
-                    </Grid.Column>
-                </Grid>
-            </Segment>
-            <Segment attached>
-                <Grid>
-                    <Grid.Column width={1}>
-                        <Icon name='check circle' size='large' color='teal'/>
-                    </Grid.Column>
-                    <Grid.Column width={15}>
-                        <span>
-                            {person.completed ? 'Completed' : 'Not completed'}
+                            {person.completed === null ? '' : person.completed === true ? 'Yes' : 'No'}
                         </span>
                     </Grid.Column>
                 </Grid>

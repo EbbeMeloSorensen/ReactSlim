@@ -6,11 +6,11 @@ import PersonListItem from './PersonListItem';
 
 export default observer(function PersonList() {
     const {personStore} = useStore();
-    const {peopleByDate} = personStore;
+    const {peopleByName} = personStore;
 
     return (
         <List divided>
-            {peopleByDate.map(person => (
+            {peopleByName.map(person => (
                 <PersonListItem key={person.id} person={person} />
             ))}
         </List>

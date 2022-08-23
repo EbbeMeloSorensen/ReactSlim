@@ -57,14 +57,19 @@ export default observer(function PersonForm() {
                 <Form className='ui form' onSubmit={handleSubmit} autoComplete='off'>
                     <MyTextInput name='firstName' placeholder='First Name' />
                     <MyTextInput name='surname' placeholder='Surname' />
-                    <MyTextArea rows={3} placeholder='Description' name='description'/>
+                    <MyTextInput name='nickname' placeholder='Nickname' />
+                    <MyTextInput name='address' placeholder='Address' />
+                    <MyTextInput name='zipCode' placeholder='Zip Code' />
+                    <MyTextInput name='city' placeholder='City' />
                     <MyDateInput
                         placeholderText='Birthday'
                         name='birthday'
-                        showTimeSelect
+                        //showTimeSelect
                         timeCaption='time'
                         dateFormat='MMMM d, yyyy h:mm aa'
                     />
+                    <MyTextInput name='category' placeholder='Category' />
+                    <MyTextArea rows={3} placeholder='Description' name='description'/>
                     <Button 
                         disabled={isSubmitting || !dirty || !isValid}
                         loading={isSubmitting} floated='right' 

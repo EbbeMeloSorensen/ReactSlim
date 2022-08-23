@@ -32,7 +32,7 @@ namespace Application.People
             {
                 var query = _context.People
                     //.Where(d => d.Birthday >= request.Params.StartDate)
-                    .OrderBy(d => d.Birthday)
+                    .OrderBy(d => d.FirstName)
                     .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
                         new {currentUsername = _userAccessor.GetUsername()})
                     .AsQueryable();

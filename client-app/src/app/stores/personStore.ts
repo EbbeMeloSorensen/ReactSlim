@@ -72,15 +72,16 @@ export default class PersonStore {
         return params;
     }
 
-    get peopleByDate() {
+    get peopleByName() {
         return Array.from(this.personRegistry.values()).sort((a, b) => 
-            a.birthday!.getTime() - b.birthday!.getTime());
+            `${a.firstName} ${a.surname}` < `${b.firstName} ${b.surname}` ? -1 : 1);
     }
 
     loadPeople = async () => {
         this.loadingInitial = true;
         try {
             const result = await agent.People.list(this.axiosParams);
+            console.log(result);
             result.data.forEach(person => {
                 this.setPerson(person);
             })
@@ -119,7 +120,7 @@ export default class PersonStore {
     }
 
     private setPerson = (person: Person) => {
-        person.birthday = new Date(person.birthday!);
+        person.birthday = person.birthday === null ? null : new Date(person.birthday!);
         this.personRegistry.set(person.id, person);
     }
 
