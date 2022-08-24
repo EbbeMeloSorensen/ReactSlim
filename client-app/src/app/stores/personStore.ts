@@ -120,7 +120,8 @@ export default class PersonStore {
     }
 
     private setPerson = (person: Person) => {
-        person.birthday = person.birthday === null ? null : new Date(person.birthday!);
+        console.log(person.birthday);
+        person.birthday = person.birthday === null ? null : new Date(person.birthday);
         this.personRegistry.set(person.id, person);
     }
 

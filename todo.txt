@@ -16,14 +16,17 @@ Done:
 * Change the Completed attribute of person to Dead
 
 Todo:
+* READ på plads
+ o Det skal fremgå af Details view om personen er levende, død eller om det er uspecificeret
+ o Fødselsdato skal vises rigtigt - ikke med 12:00 AM
 * Når du opretter en ny person og angiver, at vedkommende er død, skal det virke
 * Når du opretter en ny person, skal den skrive rigtigt created tidspunkt
 * Hvorfor laver den fødselsdagen om fra 24. juli til 23. juli??
   -> Hmm når du vælger en dato, skrives den ned som en anden dato...
 * Færdig med Read
   o Birthday skal vises som tomt, hvis den er null (OK)
-
 * Hvis ikke birthday sættes, skal man bruge null
+* Sortering skal virke - hvordan sorterer den f.eks. på "Anders" og "Anders And"
 * Vis tasks som er completed med overstregning i listen
 * Overvej at placere Details på samme side som listen
 * Tilret placeholderen, så den passer med den mere kompakte liste
