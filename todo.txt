@@ -13,9 +13,11 @@ Done:
   o Vedligehold en state i ActivityFilters, som udtrykker filteret (OK)
   o Lav et filter på selve API'et og test med postman (OK)
   o Kald APIet med filteret som specificeret i guien (OK)
+* Change the Completed attribute of person to Dead
 
 Todo:
-* Change the Completed attribute of person to Dead
+* Når du opretter en ny person og angiver, at vedkommende er død, skal det virke
+* Når du opretter en ny person, skal den skrive rigtigt created tidspunkt
 * Hvorfor laver den fødselsdagen om fra 24. juli til 23. juli??
   -> Hmm når du vælger en dato, skrives den ned som en anden dato...
 * Færdig med Read

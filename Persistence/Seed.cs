@@ -253,7 +253,20 @@ namespace Persistence
                         Birthday = new DateTime(1975, 7, 24),
                         Category = "Politik",
                         Description = "2019-",
+                        Dead = false,
+                        Created = now
+                    },
+                    new Person
+                    {
+                        FirstName = "Ole",
+                        Surname = "Sørensen",
                         Dead = true,
+                        Created = now
+                    },
+                    new Person
+                    {
+                        FirstName = "Ebbe",
+                        Surname = "Melo Sørensen",
                         Created = now
                     }
                 };

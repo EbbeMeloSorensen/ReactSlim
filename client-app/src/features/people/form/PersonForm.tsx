@@ -11,6 +11,8 @@ import MyTextInput from "../../../app/common/form/MyTextInput";
 import MyTextArea from "../../../app/common/form/MyTextArea";
 import MyDateInput from "../../../app/common/form/MyDateInput";
 import { PersonFormValues } from "../../../app/models/person";
+import MySelectInput from "../../../app/common/form/MySelectInput";
+import { deadOptions } from "../../../app/common/options/deadOptions";
 
 export default observer(function PersonForm() {
     const history = useHistory();
@@ -37,6 +39,11 @@ export default observer(function PersonForm() {
                 ...person, // ("spread" operator)
                 id: uuid()
             };
+
+            console.log('In handle submit..');
+            console.log(newPerson);
+            //newPerson.dead = true;// person.dead === 'no';
+            console.log(newPerson);
             createPerson(newPerson).then(() => history.push(`/people/${newPerson.id}`))
         } else {
             updatePerson(person).then(() => history.push(`/people/${person.id}`))
@@ -64,11 +71,12 @@ export default observer(function PersonForm() {
                     <MyDateInput
                         placeholderText='Birthday'
                         name='birthday'
-                        //showTimeSelect
+                        showTimeSelect
                         timeCaption='time'
                         dateFormat='MMMM d, yyyy h:mm aa'
                     />
                     <MyTextInput name='category' placeholder='Category' />
+                    <MySelectInput options={deadOptions} placeholder='Dead' name='dead'/>
                     <MyTextArea rows={3} placeholder='Description' name='description'/>
                     <Button 
                         disabled={isSubmitting || !dirty || !isValid}

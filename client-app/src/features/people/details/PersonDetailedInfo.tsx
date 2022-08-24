@@ -14,6 +14,16 @@ export default observer(function PersonDetailedInfo({person}: Props) {
             <Segment>
                 <Grid attached='top'>
                     <Grid.Column width={2}>
+                        Nickname
+                    </Grid.Column>
+                    <Grid.Column width={14}>
+                        <p>{person.nickname}</p>
+                    </Grid.Column>
+                </Grid>
+            </Segment>
+            <Segment>
+                <Grid>
+                    <Grid.Column width={2}>
                         Address
                     </Grid.Column>
                     <Grid.Column width={14}>
@@ -38,16 +48,6 @@ export default observer(function PersonDetailedInfo({person}: Props) {
                     </Grid.Column>
                     <Grid.Column width={14}>
                         <p>{person.city}</p>
-                    </Grid.Column>
-                </Grid>
-            </Segment>
-            <Segment>
-                <Grid>
-                    <Grid.Column width={2}>
-                        Nickname
-                    </Grid.Column>
-                    <Grid.Column width={14}>
-                        <p>{person.nickname}</p>
                     </Grid.Column>
                 </Grid>
             </Segment>
@@ -90,7 +90,7 @@ export default observer(function PersonDetailedInfo({person}: Props) {
                     </Grid.Column>
                     <Grid.Column width={14}>
                         <span>
-                            {person.dead === null ? '' : person.dead === true ? 'Yes' : 'No'}
+                            {/* {person.dead === null ? '' : person.dead === true ? 'Yes' : 'No'} */}
                         </span>
                     </Grid.Column>
                 </Grid>
