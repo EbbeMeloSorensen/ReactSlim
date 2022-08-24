@@ -37,11 +37,11 @@ export default observer(function PersonForm() {
         if (!person.id) {
             let newPerson = {
                 ...person, // ("spread" operator)
-                id: uuid()
+                id: uuid(),
+                created: new Date().toISOString()
             };
 
             console.log('In handle submit..');
-            console.log(newPerson);
             //newPerson.dead = true;// person.dead === 'no';
             console.log(newPerson);
             createPerson(newPerson).then(() => history.push(`/people/${newPerson.id}`))
@@ -71,9 +71,9 @@ export default observer(function PersonForm() {
                     <MyDateInput
                         placeholderText='Birthday'
                         name='birthday'
-                        showTimeSelect
+                        //showTimeSelect
                         timeCaption='time'
-                        dateFormat='MMMM d, yyyy h:mm aa'
+                        dateFormat='MMMM d, yyyy'
                     />
                     <MyTextInput name='category' placeholder='Category' />
                     <MySelectInput options={deadOptions} placeholder='Dead' name='dead'/>

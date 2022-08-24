@@ -58,7 +58,7 @@ export default observer(function PersonDetailedInfo({person}: Props) {
                     </Grid.Column>
                     <Grid.Column width={14}>
                         <span>
-                            {person.birthday === null ? '' : format(person.birthday, 'dd MMM yyyy h:mm aa')}
+                            {person.birthday === null ? '' : format(person.birthday, 'dd-MM-yyyy HH:mm:ss')}
                         </span>
                     </Grid.Column>
                 </Grid>

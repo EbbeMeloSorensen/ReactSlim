@@ -136,7 +136,6 @@ export default class PersonStore {
     createPerson = async (person: PersonFormValues) => {
         try {
             console.log('here 1');
-            console.log(person);
             await agent.People.create(person);
             console.log('here 2');
             const newPerson = new Person(person);
