@@ -1,8 +1,8 @@
 import { observer } from 'mobx-react-lite';
 import React from 'react'
-import {Segment, Grid, Icon} from 'semantic-ui-react'
-import {Person} from "../../../app/models/person";
-import {format} from 'date-fns';
+import { Segment, Grid } from 'semantic-ui-react'
+import { Person } from "../../../app/models/person";
+import { format } from 'date-fns';
 
 interface Props {
     person: Person

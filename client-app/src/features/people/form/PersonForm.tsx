@@ -59,7 +59,14 @@ export default observer(function PersonForm() {
                 // createPerson method of the agent 
                 dead: typeof person.dead === "object" || person.dead.toString() === ""
                     ? null
-                    : person.dead.toString() === "true"
+                    : person.dead.toString() === "true",
+                surname: person.surname === "" ? null : person.surname,
+                nickname: person.nickname === "" ? null : person.nickname,
+                address: person.address === "" ? null : person.address,
+                zipCode: person.zipCode === "" ? null : person.zipCode,
+                city: person.city === "" ? null : person.city,
+                category: person.category === "" ? null : person.category,
+                description: person.description === "" ? null : person.description
             };
 
             createPerson(newPerson).then(() => history.push(`/people/${newPerson.id}`))

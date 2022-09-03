@@ -1,14 +1,14 @@
 export interface Person {
     id: string;
     firstName: string;
-    surname: string;
-    nickname: string;
-    address: string;
-    zipCode: string;
-    city: string;
+    surname: string | null;
+    nickname: string | null;
+    address: string | null;
+    zipCode: string | null;
+    city: string | null;
     birthday: Date | null;
-    category: string;
-    description: string;
+    category: string | null;
+    description: string | null;
     dead: boolean | null;
     created: Date;
 }
@@ -22,14 +22,14 @@ export class Person implements Person {
 export class PersonFormValues {
     id?: string = undefined;
     firstName: string = '';
-    surname: string = '';
-    nickname: string = '';
-    address: string = '';
-    zipCode: string = '';
-    city: string = '';
+    surname: string | null = '';
+    nickname: string | null = '';
+    address: string | null = '';
+    zipCode: string | null = '';
+    city: string | null = '';
     birthday: Date | null = null;
-    category: string = '';
-    description: string = '';
+    category: string | null = '';
+    description: string | null = '';
     dead: boolean | null = null;
 
     constructor(person?: PersonFormValues) {

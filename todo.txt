@@ -33,7 +33,7 @@ Todo:
 * Tilret placeholderen, så den passer med den mere kompakte liste
 
 Test:
-C1: Prøv at lav en person uden at have indtastet noget
+C1: Prøv at lav en person uden at have indtastet information i nogen felter
     -> Det skal man ikke kunne - Submit-knappen skal kun være synlig, når der er indtastet noget i First Name
 C2: Lav en person, hvor der blot er et first Name
     -> I databasen bør der være null for alle felter (inkl dead) pånær first name og created
@@ -49,3 +49,7 @@ C5: Lav en person, der er explicit levende
     -> Den række, der oprettes i databasen, skal have værdien 0 i feltet Dead
 C6: Lav en person, hvor man først sætter værdien af dead til Yes men efterfølgende sætter tilbage til null
     -> Den række, der oprettes i databasen, skal have værdien null i feltet Dead
+C7: Lav en person, der har data i alle felter
+
+U1: Vælg en person, der har information i alle felter og gå ind i Edit mode
+    -> Alle felter skal udfyldes
