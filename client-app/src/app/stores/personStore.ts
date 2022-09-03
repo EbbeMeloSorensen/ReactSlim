@@ -120,7 +120,6 @@ export default class PersonStore {
     }
 
     private setPerson = (person: Person) => {
-        console.log(person.birthday);
         person.birthday = person.birthday === null ? null : new Date(person.birthday);
         this.personRegistry.set(person.id, person);
     }
@@ -135,9 +134,7 @@ export default class PersonStore {
 
     createPerson = async (person: PersonFormValues) => {
         try {
-            console.log('here 1');
             await agent.People.create(person);
-            console.log('here 2');
             const newPerson = new Person(person);
             this.setPerson(newPerson);
             runInAction(() => {

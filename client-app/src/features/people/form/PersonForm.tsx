@@ -35,17 +35,26 @@ export default observer(function PersonForm() {
 
     function handleFormSubmit(person: PersonFormValues) {
         if (!person.id) {
+            console.log('creating new person..');
             let newPerson = {
                 ...person, // ("spread" operator)
                 id: uuid(),
-                created: new Date().toISOString()
+                created: new Date().toISOString(),
+                // We handle the birthday like this to ensure it ends up properly in the datebase,
+                // where it is stored as UTC time. Notice that the person from the form is given in local time
+                birthday: person.birthday === null 
+                ? null 
+                : new Date(Date.UTC(
+                    person.birthday.getFullYear(),
+                    person.birthday.getMonth(),
+                    person.birthday.getDate()))
             };
 
-            console.log('In handle submit..');
             //newPerson.dead = true;// person.dead === 'no';
-            console.log(newPerson);
+            //console.log(newPerson);
             createPerson(newPerson).then(() => history.push(`/people/${newPerson.id}`))
         } else {
+            console.log('updating person..');
             updatePerson(person).then(() => history.push(`/people/${person.id}`))
         }
     }

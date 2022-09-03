@@ -18,7 +18,8 @@ Done:
 Todo:
 * READ på plads
  o Det skal fremgå af Details view om personen er levende, død eller om det er uspecificeret
- o Fødselsdato skal vises rigtigt - ikke med 12:00 AM
+ o Fødselsdato skal vises rigtigt - hvis man angiver en fødselsdato på f.eks. 01-08-2022 skal den også gemmes i databasen som 01-08-2022
+   (den gemmes som utc-tid)
 * Når du opretter en ny person og angiver, at vedkommende er død, skal det virke
 * Når du opretter en ny person, skal den skrive rigtigt created tidspunkt
 * Hvorfor laver den fødselsdagen om fra 24. juli til 23. juli??
@@ -30,3 +31,12 @@ Todo:
 * Vis tasks som er completed med overstregning i listen
 * Overvej at placere Details på samme side som listen
 * Tilret placeholderen, så den passer med den mere kompakte liste
+
+Test:
+C1: Prøv at lav en person uden at have indtastet noget
+    -> Det skal man ikke kunne - Submit-knappen skal kun være synlig, når der er indtastet noget i First Name
+C2: Lav en person, hvor der blot er et first Name
+    -> Det skal lykkes. I databasen bør der være null for alle felter pånær first name og created
+    -> created skal indeholde created time i utc
+C3: Lav en person, hvor man angiver fødselsdag som 24-07-1975
+    -> 

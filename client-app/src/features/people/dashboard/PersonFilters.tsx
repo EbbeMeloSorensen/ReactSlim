@@ -9,7 +9,7 @@ export default observer(function PeopleFilters() {
     // Nogle states, vi gerne vil sende til personStore, når man klikker på Search-knappen
     const [filter, setFilter] = useState('');
     const [dead, setDead] = useState(false);
-    const [notDead, setNotDead] = useState(true);
+    const [notDead, setNotDead] = useState(false);
     const [deadUnspecified, setDeadUnspecified] = useState(false);
 
     function handleClick() {

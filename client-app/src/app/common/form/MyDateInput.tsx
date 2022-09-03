@@ -1,9 +1,9 @@
 import { useField } from "formik";
 import React from "react";
 import { Form, Label } from "semantic-ui-react";
-import DatePicker, {ReactDatePickerProps, registerLocale, setDefaultLocale} from 'react-datepicker';
-import es from 'date-fns/locale/es'
-registerLocale('es', es)
+import DatePicker, {ReactDatePickerProps/*, registerLocale, setDefaultLocale*/} from 'react-datepicker';
+//import enus from 'date-fns/locale/en-US'
+//registerLocale('en-US', enus)
 // https://www.npmjs.com/package/react-datepicker
 
 export default function MyDateInput(props: Partial<ReactDatePickerProps>) {
@@ -11,9 +11,17 @@ export default function MyDateInput(props: Partial<ReactDatePickerProps>) {
     return (
         <Form.Field error={meta.touched && !!meta.error}>
             <DatePicker
-                locale="es"
+                //locale="en-US"
                 {...field}
                 {...props}
+                isClearable
+                showYearPicker
+                //showYearDropdown
+                showMonthDropdown
+                //showFullMonthYearPicker
+                //scrollableYearDropdown
+                //showMonthYearDropdown
+                //dateFormatCalendar="YYYY"
                 selected={(field.value && new Date(field.value)) || null}
                 onChange={value => helpers.setValue(value)}
             />
