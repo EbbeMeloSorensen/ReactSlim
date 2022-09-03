@@ -15,13 +15,12 @@ export default function MyDateInput(props: Partial<ReactDatePickerProps>) {
                 {...field}
                 {...props}
                 isClearable
-                showYearPicker
-                //showYearDropdown
                 showMonthDropdown
-                //showFullMonthYearPicker
-                //scrollableYearDropdown
-                //showMonthYearDropdown
-                //dateFormatCalendar="YYYY"
+                peekNextMonth
+                showYearDropdown
+                dropdownMode="select"
+                minDate={new Date(1900, 0, 1)}
+                maxDate={new Date()} // Today
                 selected={(field.value && new Date(field.value)) || null}
                 onChange={value => helpers.setValue(value)}
             />

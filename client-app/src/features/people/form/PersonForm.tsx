@@ -35,7 +35,9 @@ export default observer(function PersonForm() {
 
     function handleFormSubmit(person: PersonFormValues) {
         if (!person.id) {
+
             console.log('creating new person..');
+            console.log(person);
             let newPerson = {
                 ...person, // ("spread" operator)
                 id: uuid(),
@@ -43,11 +45,12 @@ export default observer(function PersonForm() {
                 // We handle the birthday like this to ensure it ends up properly in the datebase,
                 // where it is stored as UTC time. Notice that the person from the form is given in local time
                 birthday: person.birthday === null 
-                ? null 
-                : new Date(Date.UTC(
-                    person.birthday.getFullYear(),
-                    person.birthday.getMonth(),
-                    person.birthday.getDate()))
+                    ? null 
+                    : new Date(Date.UTC(
+                        person.birthday.getFullYear(),
+                        person.birthday.getMonth(),
+                        person.birthday.getDate())),
+                dead: true
             };
 
             //newPerson.dead = true;// person.dead === 'no';
@@ -80,7 +83,6 @@ export default observer(function PersonForm() {
                     <MyDateInput
                         placeholderText='Birthday'
                         name='birthday'
-                        //showTimeSelect
                         timeCaption='time'
                         dateFormat='MMMM d, yyyy'
                     />
