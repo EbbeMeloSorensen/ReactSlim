@@ -36,18 +36,16 @@ Test:
 C1: Prøv at lav en person uden at have indtastet noget
     -> Det skal man ikke kunne - Submit-knappen skal kun være synlig, når der er indtastet noget i First Name
 C2: Lav en person, hvor der blot er et first Name
-    -> Det skal lykkes.
     -> I databasen bør der være null for alle felter (inkl dead) pånær first name og created
     -> created skal indeholde created time i utc
 C3: Lav en person, hvor man angiver fødselsdag som 24-07-1975
-    -> Det skal lykkes.
     -> Det skal være let at vælge et år mellem 1900 og indeværende år
     -> Det skal være let at vælge måned og dato
     -> Der skal være mulighed for at cleare en valgt dato
     -> created skal indeholde created time i utc
 C4: Lav en person, der er død
-    -> Det skal lykkes.
     -> Den række, der oprettes i databasen, skal have værdien 1 i feltet Dead
 C5: Lav en person, der er explicit levende
-    -> Det skal lykkes.
     -> Den række, der oprettes i databasen, skal have værdien 0 i feltet Dead
+C6: Lav en person, hvor man først sætter værdien af dead til Yes men efterfølgende sætter tilbage til null
+    -> Den række, der oprettes i databasen, skal have værdien null i feltet Dead

@@ -37,12 +37,14 @@ export default observer(function PersonForm() {
         if (!person.id) {
 
             console.log('creating new person..');
-            console.log(person);
+            //console.log(person);
+            //console.log(typeof person.dead);
+
             let newPerson = {
                 ...person, // ("spread" operator)
                 id: uuid(),
                 created: new Date().toISOString(),
-                // We handle the birthday like this to ensure it ends up properly in the datebase,
+                // We handle the "birthday" field like this to ensure it ends up properly in the datebase,
                 // where it is stored as UTC time. Notice that the person from the form is given in local time
                 birthday: person.birthday === null 
                     ? null 
@@ -50,11 +52,16 @@ export default observer(function PersonForm() {
                         person.birthday.getFullYear(),
                         person.birthday.getMonth(),
                         person.birthday.getDate())),
-                dead: true
+                // We handle the "dead" field like this to ensure that values are set properly.
+                // It is a bit of a hack, but I had to set the values of the deadOptions to strings rather than
+                // booleans to get the combobox control to work, and then type of the "dead" property of the
+                // PersonFormValues ends up as a string which will cause an error if we pass it to the
+                // createPerson method of the agent 
+                dead: typeof person.dead === "object" || person.dead.toString() === ""
+                    ? null
+                    : person.dead.toString() === "true"
             };
 
-            //newPerson.dead = true;// person.dead === 'no';
-            //console.log(newPerson);
             createPerson(newPerson).then(() => history.push(`/people/${newPerson.id}`))
         } else {
             console.log('updating person..');
