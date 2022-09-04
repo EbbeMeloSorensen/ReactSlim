@@ -90,7 +90,11 @@ export default observer(function PersonDetailedInfo({person}: Props) {
                     </Grid.Column>
                     <Grid.Column width={14}>
                         <span>
-                            {person.dead === null ? '' : person.dead === true ? 'Yes' : 'No'}
+                            { person.dead === null 
+                                ? null 
+                                : person.dead === false
+                                    ? "No"
+                                    : "Yes" }
                         </span>
                     </Grid.Column>
                 </Grid>

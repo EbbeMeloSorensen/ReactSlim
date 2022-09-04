@@ -9,7 +9,7 @@ export interface Person {
     birthday: Date | null;
     category: string | null;
     description: string | null;
-    dead: boolean | null;
+    dead: string | boolean | null;
     created: Date;
 }
 
@@ -30,7 +30,7 @@ export class PersonFormValues {
     birthday: Date | null = null;
     category: string | null = '';
     description: string | null = '';
-    dead: boolean | null = null;
+    dead: string | boolean | null = null;
 
     constructor(person?: PersonFormValues) {
         if (person) {
