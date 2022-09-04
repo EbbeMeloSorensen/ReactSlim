@@ -62,10 +62,17 @@ R1: Gå gennem alle de personer, der blev lavet under Create-sektionen
 UPDATE:
 U1: Vælg en person, der har information i alle felter og gå ind i Edit mode
     -> Alle felter skal udfyldes
-
+U2: Vælg en person, der har en værdi på false for attributten dead og ændr den
+    true
+    -> Feltet skal ændres til true
 
 
 Thoughts:
 Du har haft et gevaldigt bøvl med at implementere support for attributten dead.
 Du er tilsyneladende kommet igennem, men du måtte lave propertyen dead sådan,
-at den både kunne være string, boolean og null ()
+at den både kunne være string, boolean og null, hvilket ikke virker synderligt
+elegant. Den skal tilsyneladende være string eller null for at kunne bruges inden
+for rammerne af PersonForm, men den skal være boolean eller null for at kunne
+bruges til at kommunikere til API'et. I praksis gør du så det at du hijacker
+feltet i forbindelse med at det passes frem og tilbage mellem PersonForm
+og den resterende logik. Problemet ligger muligvis i at din MySelectInput

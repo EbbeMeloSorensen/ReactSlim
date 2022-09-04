@@ -44,8 +44,6 @@ export default observer(function PersonForm() {
         if (!person.id) {
 
             console.log('creating new person..');
-            //console.log(person);
-            //console.log(typeof person.dead);
 
             let newPerson = {
                 ...person, // ("spread" operator)
@@ -81,7 +79,30 @@ export default observer(function PersonForm() {
             createPerson(newPerson).then(() => history.push(`/people/${newPerson.id}`))
         } else {
             console.log('updating person..');
-            updatePerson(person).then(() => history.push(`/people/${person.id}`))
+
+            let updatedPerson = {
+                ...person, // ("spread" operator)
+                birthday: person.birthday === null 
+                    ? null 
+                    : new Date(Date.UTC(
+                        person.birthday.getFullYear(),
+                        person.birthday.getMonth(),
+                        person.birthday.getDate())),
+                dead: typeof person.dead === "object" || person.dead.toString() === ""
+                    ? null
+                    : person.dead.toString() === "true",
+                surname: person.surname === "" ? null : person.surname,
+                nickname: person.nickname === "" ? null : person.nickname,
+                address: person.address === "" ? null : person.address,
+                zipCode: person.zipCode === "" ? null : person.zipCode,
+                city: person.city === "" ? null : person.city,
+                category: person.category === "" ? null : person.category,
+                description: person.description === "" ? null : person.description
+            };
+
+            console.log(updatedPerson);
+            
+            updatePerson(updatedPerson).then(() => history.push(`/people/${person.id}`))
         }
     }
 
