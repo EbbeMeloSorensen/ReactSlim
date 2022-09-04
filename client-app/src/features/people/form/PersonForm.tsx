@@ -30,7 +30,11 @@ export default observer(function PersonForm() {
     })
 
     useEffect(() => {
-        if (id) loadPerson(id).then(person => setPerson(new PersonFormValues(person)))
+        if (id) loadPerson(id).then(person => {
+            console.log(person);
+            let pfv = new PersonFormValues(person);
+            setPerson(pfv);
+        })
     }, [id, loadPerson]);
 
     function handleFormSubmit(person: PersonFormValues) {

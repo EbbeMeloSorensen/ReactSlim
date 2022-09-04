@@ -53,3 +53,8 @@ C7: Lav en person, der har data i alle felter
 
 U1: Vælg en person, der har information i alle felter og gå ind i Edit mode
     -> Alle felter skal udfyldes
+
+
+
+Thoughts:
+Du har haft et gevaldigt bøvl med at implementere support for attributten dead

@@ -6,10 +6,11 @@ interface Props {
     placeholder: string;
     name: string;
     options: any;
-    label?: string; 
+    label?: string;
 }
 
 export default function MySelectInput(props: Props) {
+    // The helpers allows us to manually set the value and manually set the touched status of our input component
     const [field, meta, helpers] = useField(props.name);
     return (
         <Form.Field error={meta.touched && !!meta.error}>
@@ -17,7 +18,7 @@ export default function MySelectInput(props: Props) {
             <Select 
                 clearable
                 options={props.options}
-                value={field.value || null}
+                value={field.value || null} // "We're not spreading.."
                 onChange={(e, d) => helpers.setValue(d.value)}
                 onBlur={() => helpers.setTouched(true)}
                 placeholder={props.placeholder}

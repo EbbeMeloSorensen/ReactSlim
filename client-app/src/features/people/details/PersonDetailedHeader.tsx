@@ -17,7 +17,7 @@ export default observer (function PersonDetailedHeader({person}: Props) {
                     to={`/manage/${person.id}`}
                     color='orange'
                     floated='right'>
-                    Update
+                    Edit
                 </Button>
             </Segment>
         </Segment.Group>
