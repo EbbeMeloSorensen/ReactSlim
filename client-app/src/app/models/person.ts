@@ -31,6 +31,7 @@ export class PersonFormValues {
     category: string | null = '';
     description: string | null = '';
     dead: string | boolean | null = null;
+    created: Date | null = null;
 
     constructor(person?: PersonFormValues) {
         if (person) {
@@ -45,6 +46,7 @@ export class PersonFormValues {
             this.category = person.category === null ? "" : person.category;
             this.description = person.description === null ? "" : person.description;
             this.dead = person.dead;
+            this.created = person.created;
         }
     }
 }

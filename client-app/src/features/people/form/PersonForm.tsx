@@ -47,7 +47,7 @@ export default observer(function PersonForm() {
             let newPerson = {
                 ...person, // ("spread" operator)
                 id: uuid(),
-                created: new Date().toISOString(),
+                created: new Date(),
                 // We handle the "birthday" field like this to ensure it ends up properly in the datebase,
                 // where it is stored as UTC time. Notice that the person from the form is given in local time
                 birthday: person.birthday === null 
