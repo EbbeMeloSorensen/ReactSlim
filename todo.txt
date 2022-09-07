@@ -37,7 +37,7 @@ Test:
 CREATE:
 C1: Prøv at lav en person uden at have indtastet information i nogen felter
     -> Det skal man ikke kunne - Submit-knappen skal kun være synlig, når der er indtastet noget i First Name
-C2: Lav en person, hvor der blot er et first Name
+C2: Lav en person, hvor der blot har et first Name
     -> I databasen bør der være null for alle felter (inkl dead) pånær first name og created
     -> created skal indeholde created time i utc
 C3: Lav en person, hvor man angiver fødselsdag som 24-07-1975
@@ -62,9 +62,21 @@ R1: Gå gennem alle de personer, der blev lavet under Create-sektionen
 UPDATE:
 U1: Vælg en person, der har information i alle felter og gå ind i Edit mode
     -> Alle felter skal udfyldes
-U2: Vælg en person, der har en værdi på false for attributten dead og ændr den
-    true
+U2: Vælg en person, der har information i alle felter og ændr alle felter til andre værdier
+    forskellige fra null
+    -> Alle felter skal sættes til de pågældende værdier
+    -> CREATED SKAL VÆRE UÆNDRET!!
+U3: Vælg en person, der har information i alle felter og ændr alle felter pånær firstname 
+    til null
+    -> Alle felter skal sættes til null
+    -> Created skal være uændret
+U4: Vælg en person, der har en værdi på false for attributten dead og ændr den til true
     -> Feltet skal ændres til true
+U5: Vælg en person, der har en værdi på true for attributten dead og ændr den til null
+    -> Feltet skal ændres til null
+
+DELETE:
+D1: Slet en person
 
 
 Thoughts:

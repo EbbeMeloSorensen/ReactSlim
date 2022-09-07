@@ -32,7 +32,6 @@ export default observer(function PersonForm() {
     useEffect(() => {
         if (id) loadPerson(id).then(person => {
             //console.log("About to populate PersonForm with data");
-            //console.log(person);
             let pfv = new PersonFormValues(person);
             // Dead skal sættes som en string eller som null for at den vises i formen
             pfv.dead = pfv.dead === null || pfv.dead.toString() === "" ? null : pfv.dead.toString();
@@ -97,7 +96,7 @@ export default observer(function PersonForm() {
                 zipCode: person.zipCode === "" ? null : person.zipCode,
                 city: person.city === "" ? null : person.city,
                 category: person.category === "" ? null : person.category,
-                description: person.description === "" ? null : person.description
+                description: person.description === "" ? null : person.description,
             };
 
             console.log(updatedPerson);

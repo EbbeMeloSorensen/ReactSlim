@@ -35,15 +35,15 @@ export class PersonFormValues {
     constructor(person?: PersonFormValues) {
         if (person) {
             this.id = person.id;
-            this.firstName = person.firstName;
-            this.surname = person.surname;
-            this.nickname = person.nickname;
-            this.address = person.address;
-            this.zipCode = person.zipCode;
-            this.city = person.city;
+            this.firstName = person.firstName === null ? "" : person.firstName;
+            this.surname = person.surname === null ? "" : person.surname;
+            this.nickname = person.nickname === null ? "" : person.nickname;
+            this.address = person.address === null ? "" : person.address;
+            this.zipCode = person.zipCode === null ? "" : person.zipCode;
+            this.city = person.city === null ? "" : person.city;
             this.birthday = person.birthday;
-            this.category = person.category;
-            this.description = person.description;
+            this.category = person.category === null ? "" : person.category;
+            this.description = person.description === null ? "" : person.description;
             this.dead = person.dead;
         }
     }
