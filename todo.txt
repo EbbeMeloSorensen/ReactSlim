@@ -37,7 +37,7 @@ Test:
 CREATE:
 C1: Prøv at lav en person uden at have indtastet information i nogen felter
     -> Det skal man ikke kunne - Submit-knappen skal kun være synlig, når der er indtastet noget i First Name
-C2: Lav en person, hvor der blot har et first Name
+C2: Lav en person, hvor der blot har et first Name (Uffe)
     -> I databasen bør der være null for alle felter (inkl dead) pånær first name og created
     -> created skal indeholde created time i utc
 C3: Lav en person, hvor man angiver fødselsdag som 24-07-1975
