@@ -12,14 +12,14 @@ using Persistence;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220912155508_PGInitial")]
+    [Migration("20221002052354_PGInitial")]
     partial class PGInitial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.9")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
@@ -135,6 +135,34 @@ namespace Persistence.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("People");
+                });
+
+            modelBuilder.Entity("Domain.PersonAssociation", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<DateTime>("Created")
+                        .HasColumnType("timestamp with time zone");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<Guid>("ObjectPersonId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid>("SubjectPersonId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ObjectPersonId");
+
+                    b.HasIndex("SubjectPersonId");
+
+                    b.ToTable("PersonAssociations");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
@@ -269,6 +297,25 @@ namespace Persistence.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
+            modelBuilder.Entity("Domain.PersonAssociation", b =>
+                {
+                    b.HasOne("Domain.Person", "ObjectPerson")
+                        .WithMany("SubjectPeople")
+                        .HasForeignKey("ObjectPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Domain.Person", "SubjectPerson")
+                        .WithMany("ObjectPeople")
+                        .HasForeignKey("SubjectPersonId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ObjectPerson");
+
+                    b.Navigation("SubjectPerson");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -318,6 +365,13 @@ namespace Persistence.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Domain.Person", b =>
+                {
+                    b.Navigation("ObjectPeople");
+
+                    b.Navigation("SubjectPeople");
                 });
 #pragma warning restore 612, 618
         }

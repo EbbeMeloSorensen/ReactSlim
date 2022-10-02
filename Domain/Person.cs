@@ -14,5 +14,8 @@ namespace Domain
         public string? Description { get; set; }
         public bool? Dead { get; set; }
         public DateTime Created { get; set; }
+
+        public virtual ICollection<PersonAssociation>? ObjectPeople { get; set; }
+        public virtual ICollection<PersonAssociation>? SubjectPeople { get; set; }
     }
 }

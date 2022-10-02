@@ -178,6 +178,33 @@ namespace Persistence.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "PersonAssociations",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uuid", nullable: false),
+                    SubjectPersonId = table.Column<Guid>(type: "uuid", nullable: false),
+                    ObjectPersonId = table.Column<Guid>(type: "uuid", nullable: false),
+                    Description = table.Column<string>(type: "text", nullable: false),
+                    Created = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PersonAssociations", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PersonAssociations_People_ObjectPersonId",
+                        column: x => x.ObjectPersonId,
+                        principalTable: "People",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_PersonAssociations_People_SubjectPersonId",
+                        column: x => x.SubjectPersonId,
+                        principalTable: "People",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -214,6 +241,16 @@ namespace Persistence.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonAssociations_ObjectPersonId",
+                table: "PersonAssociations",
+                column: "ObjectPersonId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PersonAssociations_SubjectPersonId",
+                table: "PersonAssociations",
+                column: "SubjectPersonId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -234,13 +271,16 @@ namespace Persistence.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "People");
+                name: "PersonAssociations");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "People");
         }
     }
 }
