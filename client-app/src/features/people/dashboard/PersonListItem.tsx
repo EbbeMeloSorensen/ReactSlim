@@ -25,27 +25,6 @@ export default function PersonListItem({person}: Props) {
                     {person.firstName} {person.surname}
                 </List.Header>
             </List.Content>
-            <List.Content floated='right'>
-                <Button.Group>
-                    <Button
-                        as={Link}
-                        to={`/people/${person.id}`}
-                        color='teal'
-                        floated='right'
-                        content='View'
-                        size='tiny'
-                    />
-                    <Button
-                        name={person.id}
-                        loading={loading && target === person.id.toString()}
-                        onClick={(e) => handlePersonDelete(e, person.id)} 
-                        floated='right' 
-                        content='Delete' 
-                        color='red'
-                        size='tiny'
-                    />
-                </Button.Group>
-            </List.Content>
         </List.Item>
     )
 }

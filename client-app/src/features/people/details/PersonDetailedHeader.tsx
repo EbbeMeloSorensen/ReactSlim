@@ -15,7 +15,9 @@ export default observer (function PersonDetailedHeader({person}: Props) {
     const {deletePerson, loading} = personStore;
 
     function handlePersonDelete(e: SyntheticEvent<HTMLButtonElement>, id: string) {
-        deletePerson(id).then(() => history.push(`/people`));
+        if (window.confirm("Do you want to delete this person?") == true) {
+            deletePerson(id).then(() => history.push(`/people`));
+        }
     }
 
     return (
