@@ -55,9 +55,9 @@ namespace Application.People
                     }
                 }
 
-                if (!string.IsNullOrEmpty(request.Params.FirstName))
+                if (!string.IsNullOrEmpty(request.Params.Name))
                 {
-                    var filter = request.Params.FirstName.ToLower();
+                    var filter = request.Params.Name.ToLower();
                     query = query.Where(x => 
                         x.FirstName.ToLower().Contains(filter) ||
                         (!string.IsNullOrEmpty(x.Surname) && x.Surname.ToLower().Contains(filter)));

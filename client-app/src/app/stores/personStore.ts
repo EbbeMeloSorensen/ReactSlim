@@ -48,7 +48,7 @@ export default class PersonStore {
 
         if (value.length > 0)
         {
-            this.predicate.set('firstName', value);
+            this.predicate.set('name', value);
         }
 
         if (dead || notDead || deadUnspecified)
