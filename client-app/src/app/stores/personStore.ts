@@ -40,15 +40,23 @@ export default class PersonStore {
     // til back enden. Check det f.eks. ved at aktivere dev tools i browseren og navigere hen til
     // Network tabben
     setPredicate = (
-        value: string,
+        nameFilter: string,
+        categoryFilter: string,
         dead: boolean,
         notDead: boolean,
         deadUnspecified: boolean) => {
         this.resetPredicate();
 
-        if (value.length > 0)
+        if (nameFilter.length > 0)
         {
-            this.predicate.set('name', value);
+            console.log(nameFilter);
+            this.predicate.set('name', nameFilter);
+        }
+
+        if (categoryFilter.length > 0)
+        {
+            console.log(categoryFilter);
+            this.predicate.set('category', categoryFilter);
         }
 
         if (dead || notDead || deadUnspecified)

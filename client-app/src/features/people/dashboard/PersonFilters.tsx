@@ -7,13 +7,14 @@ export default observer(function PeopleFilters() {
     const {personStore: {setPredicate}} = useStore();
 
     // Nogle states, vi gerne vil sende til personStore, når man klikker på Search-knappen
-    const [filter, setFilter] = useState('');
+    const [nameFilter, setNameFilter] = useState('');
+    const [categoryFilter, setCategoryFilter] = useState('');
     const [dead, setDead] = useState(false);
     const [notDead, setNotDead] = useState(false);
     const [deadUnspecified, setDeadUnspecified] = useState(false);
 
     function handleClick() {
-        setPredicate(filter, dead, notDead, deadUnspecified);
+        setPredicate(nameFilter, categoryFilter, dead, notDead, deadUnspecified);
     }
 
     return (
@@ -22,7 +23,12 @@ export default observer(function PeopleFilters() {
 
             <Header>Name</Header>
             <Label>Name contains</Label>
-                <input value={filter} onChange={e => setFilter(e.target.value)}
+                <input value={nameFilter} onChange={e => setNameFilter(e.target.value)}
+            />
+
+            <Header>Category</Header>
+            <Label>Category contains</Label>
+                <input value={categoryFilter} onChange={e => setCategoryFilter(e.target.value)}
             />
 
             <Header>Dead</Header>

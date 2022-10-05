@@ -63,6 +63,13 @@ namespace Application.People
                         (!string.IsNullOrEmpty(x.Surname) && x.Surname.ToLower().Contains(filter)));
                 }
 
+                if (!string.IsNullOrEmpty(request.Params.Category))
+                {
+                    var filter = request.Params.Category.ToLower();
+                    query = query.Where(x => 
+                        !string.IsNullOrEmpty(x.Category) && x.Category.ToLower().Contains(filter));
+                }
+
                 return Result<PagedList<PersonDto>>.Success(
                     await PagedList<PersonDto>.CreateAsync(query, request.Params.PageNumber,
                         request.Params.PageSize)
