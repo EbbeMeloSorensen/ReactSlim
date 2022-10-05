@@ -30,6 +30,14 @@ export default observer(function PersonDashboard() {
                     <>
                         <PersonListItemPlaceholder />
                         <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
+                        <PersonListItemPlaceholder />
                     </>
                 ) : (
                         <InfiniteScroll

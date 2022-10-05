@@ -21,7 +21,7 @@ export default observer(function PeopleFilters() {
             <Header icon='filter' attached color='teal' content='Filters' />
 
             <Header>Name</Header>
-            <Label>First Name contains</Label>
+            <Label>Name contains</Label>
                 <input value={filter} onChange={e => setFilter(e.target.value)}
             />
 

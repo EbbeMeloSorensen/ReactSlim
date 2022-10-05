@@ -57,7 +57,10 @@ namespace Application.People
 
                 if (!string.IsNullOrEmpty(request.Params.FirstName))
                 {
-                    query = query.Where(x => x.FirstName.Contains(request.Params.FirstName));
+                    var filter = request.Params.FirstName.ToLower();
+                    query = query.Where(x => 
+                        x.FirstName.ToLower().Contains(filter) ||
+                        (!string.IsNullOrEmpty(x.Surname) && x.Surname.ToLower().Contains(filter)));
                 }
 
                 return Result<PagedList<PersonDto>>.Success(
