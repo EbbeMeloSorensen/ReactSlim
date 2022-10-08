@@ -30,12 +30,26 @@ namespace Application.People
 
             public async Task<Result<PagedList<PersonDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
-                var query = _context.People
-                    //.Where(d => d.Birthday >= request.Params.StartDate)
-                    .OrderBy(d => d.FirstName)
-                    .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
-                        new {currentUsername = _userAccessor.GetUsername()})
-                    .AsQueryable();
+                IQueryable<PersonDto> query;
+                
+                if (true)
+                {
+                    query = _context.People
+                        .OrderBy(d => d.FirstName)
+                        .ThenByDescending(d => d.Surname == null)
+                        .ThenBy(d => d.Surname)
+                        .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
+                            new {currentUsername = _userAccessor.GetUsername()})
+                        .AsQueryable();
+                }
+                else
+                {
+                    query = _context.People
+                        .OrderByDescending(p => p.Created)
+                        .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
+                            new {currentUsername = _userAccessor.GetUsername()})
+                        .AsQueryable();
+                }
 
                 if (!string.IsNullOrEmpty(request.Params.Dead))
                 {

@@ -80,9 +80,20 @@ export default class PersonStore {
         return params;
     }
 
+    // Vi vil gerne sortere i overensstemmelse med hvordan det gøres, når man beder databasen
+    // sortere på fornavn primært og efternavn sekundært, hvor navne uden efternavn placeres sidst
     get peopleByName() {
-        return Array.from(this.personRegistry.values()).sort((a, b) => 
-            `${a.firstName} ${a.surname}` < `${b.firstName} ${b.surname}` ? -1 : 1);
+        return Array.from(this.personRegistry.values()).sort((a, b) => {
+            let surnameA = a.surname === null ? "" : a.surname;
+            let surnameB = b.surname === null ? "" : b.surname;
+            return `${a.firstName} ${surnameA}` < `${b.firstName} ${surnameB}` ? -1 : 1
+        });
+    }
+
+    get peopleByCreatedDesc() {
+        return Array.from(this.personRegistry.values()).sort((a, b) => {
+            return a.created > b.created ? -1 : 1
+        });
     }
 
     loadPeople = async () => {
