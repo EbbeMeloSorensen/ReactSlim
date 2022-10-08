@@ -67,6 +67,7 @@ This is also relevant after having updated the migration
 3. I VS Code: Åbn et terminalvindue, naviger til client-app folderen, og eksekver `npm run build`. Bemærk, at den kopierer resultatet hen i wwwroot-folderen pga den "postbuild" setting, som vi har lavet i package.json-filen.
 4. Commit igen til GitHub, så vi får det nye production build med.
 5. I VS code: Åbn projekt-folderen og et terminalvindue. I root folderen (f.eks. ReactSlim - ikke hverken API eller client-app): Eksekver: heroku login og klik derefter på Enter. Så popper der en web page op, hvor man skal klikke på en "login"-knap.
+6. Eksekver følgende ved root-folderen i VS Code terminalvinduet: `git push heroku main`.
 
 **NB: Starting November 28th, 2022, free Heroku Dynos, free Heroku Postgres, and free Heroku Data for Redis® will no longer be available.**
 
