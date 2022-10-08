@@ -81,12 +81,15 @@ export default class PersonStore {
     }
 
     // Vi vil gerne sortere i overensstemmelse med hvordan det gøres, når man beder databasen
-    // sortere på fornavn primært og efternavn sekundært, hvor navne uden efternavn placeres sidst
+    // sortere på fornavn primært og efternavn sekundært
     get peopleByName() {
         return Array.from(this.personRegistry.values()).sort((a, b) => {
+            if (a.firstName !== b.firstName) {
+                return a.firstName.localeCompare(b.firstName, 'en');
+            }
             let surnameA = a.surname === null ? "" : a.surname;
             let surnameB = b.surname === null ? "" : b.surname;
-            return `${a.firstName} ${surnameA}` < `${b.firstName} ${surnameB}` ? -1 : 1
+            return surnameA.localeCompare(surnameB, 'en');
         });
     }
 
