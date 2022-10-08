@@ -37,7 +37,7 @@
 This is also relevant after having updated the migration
 
 1) Log ind på https://www.heroku.com/
-2) Slet den tidligere web-applikation, f.eks. "prebsi"
+2) Slet en evt tidligere web-applikation, f.eks. "prebsi"
    1) Klik på applikationen, så på settings og scroll så ned og klik på "Delete app"-knappen
    2) Indtast applikationens navn som bekræftelse og klik på Delete
 3) Lav en ny web applikation
@@ -59,6 +59,14 @@ This is also relevant after having updated the migration
    16) Verificer, at applikationen er deployeret succesfuldt ved at indtaste https://prebsi.herokuapp.com i en browser. Man skulle gerne kunne logge ind som bob@test.com osv.
 4) I den lokale pgadmin-klient - opdater en evt forbindelse til Heroku databasen
 5) På Heroku-webpagen find credentials for databasen og indtast i konfigurationsfilen (PR.UI.WPF.dll.config) for desktop-applikationen. Opdater også credentials for forbindelsen i den lokale pgadmin-klient.
+
+## Opdatering af eksisterende applikation uden at man har ændret databasen
+
+1. Sikr, at alle ændringer af projektet (backend og frontend) er comittet til GitHub
+2. I VS Code: I API-folderen - slet folderen wwwroot og commit igen til GitHub
+3. I VS Code: Åbn et terminalvindue, naviger til client-app folderen, og eksekver `npm run build`. Bemærk, at den kopierer resultatet hen i wwwroot-folderen pga den "postbuild" setting, som vi har lavet i package.json-filen.
+4. Commit igen til GitHub, så vi får det nye production build med.
+5. I VS code: Åbn projekt-folderen og et terminalvindue. I root folderen (f.eks. ReactSlim - ikke hverken API eller client-app): Eksekver: heroku login og klik derefter på Enter. Så popper der en web page op, hvor man skal klikke på en "login"-knap.
 
 **NB: Starting November 28th, 2022, free Heroku Dynos, free Heroku Postgres, and free Heroku Data for Redis® will no longer be available.**
 
