@@ -31,24 +31,27 @@ namespace Application.People
             public async Task<Result<PagedList<PersonDto>>> Handle(Query request, CancellationToken cancellationToken)
             {
                 IQueryable<PersonDto> query;
-                
-                if (true)
+
+                switch (request.Params.Sorting)
                 {
-                    query = _context.People
-                        .OrderBy(d => d.FirstName)
-                        .ThenByDescending(d => d.Surname == null)
-                        .ThenBy(d => d.Surname)
-                        .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
-                            new {currentUsername = _userAccessor.GetUsername()})
-                        .AsQueryable();
-                }
-                else
-                {
-                    query = _context.People
-                        .OrderByDescending(p => p.Created)
-                        .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
-                            new {currentUsername = _userAccessor.GetUsername()})
-                        .AsQueryable();
+                    case "name":
+                        query = _context.People
+                            .OrderBy(d => d.FirstName)
+                            .ThenByDescending(d => d.Surname == null)
+                            .ThenBy(d => d.Surname)
+                            .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
+                                new {currentUsername = _userAccessor.GetUsername()})
+                            .AsQueryable();
+                        break;
+                    case "created":
+                        query = _context.People
+                            .OrderByDescending(p => p.Created)
+                            .ProjectTo<PersonDto>(_mapper.ConfigurationProvider,
+                                new {currentUsername = _userAccessor.GetUsername()})
+                            .AsQueryable();
+                        break;
+                    default:
+                        throw new InvalidOperationException();
                 }
 
                 if (!string.IsNullOrEmpty(request.Params.Dead))

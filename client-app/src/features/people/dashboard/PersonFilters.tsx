@@ -1,10 +1,10 @@
 import { observer } from "mobx-react-lite";
 import React, { useState } from "react";
-import { Button, Checkbox, Form, Header, Label } from "semantic-ui-react";
+import { Button, Checkbox, Form, Header, Label, Radio } from "semantic-ui-react";
 import { useStore } from "../../../app/stores/store";
 
 export default observer(function PeopleFilters() {
-    const {personStore: {setPredicate}} = useStore();
+    const {personStore: {setPredicate, sorting, setSorting}} = useStore();
 
     // Nogle states, vi gerne vil sende til personStore, når man klikker på Search-knappen
     const [nameFilter, setNameFilter] = useState('');
@@ -12,8 +12,10 @@ export default observer(function PeopleFilters() {
     const [dead, setDead] = useState(false);
     const [notDead, setNotDead] = useState(false);
     const [deadUnspecified, setDeadUnspecified] = useState(false);
+    const [sortingLocal, setSortingLocal] = useState(sorting);
 
     function handleClick() {
+        setSorting(sortingLocal);
         setPredicate(nameFilter, categoryFilter, dead, notDead, deadUnspecified);
     }
 
@@ -52,6 +54,28 @@ export default observer(function PeopleFilters() {
                         label='Unspecified'
                         defaultChecked={deadUnspecified}
                         onChange={() => setDeadUnspecified(!deadUnspecified)}
+                    />
+                </Form.Field>
+            </Form>
+
+            <Header>Sorting</Header>
+            <Form>
+                <Form.Field>
+                    <Radio
+                        label='Name'
+                        name='radioGroup'
+                        value='this'
+                        checked={sortingLocal === 'name'}
+                        onChange={() => setSortingLocal('name')}
+                    />
+                </Form.Field>
+                <Form.Field>
+                    <Radio
+                        label='Created'
+                        name='radioGroup'
+                        value='that'
+                        checked={sortingLocal === 'created'}
+                        onChange={() => setSortingLocal('created')}
                     />
                 </Form.Field>
             </Form>

@@ -8,5 +8,11 @@ namespace Application.People
         public string? Name { get; set; }
         public string? Category { get; set; }
         public string? Dead { get; set; }
+        public string Sorting { get; set; }
+
+        public PersonParams()
+        {
+            Sorting = "name";
+        }
     }
 }

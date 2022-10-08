@@ -12,6 +12,7 @@ export default class PersonStore {
     pagination: Pagination | null = null;
     pagingParams = new PagingParams();
     predicate = new Map();
+    sorting = 'name';
 
     constructor() {
         makeAutoObservable(this);
@@ -28,6 +29,10 @@ export default class PersonStore {
 
     setPagingParams = (pagingParams: PagingParams) => {
         this.pagingParams = pagingParams;
+    }
+
+    setSorting = (sorting: string) => {
+        this.sorting = sorting;
     }
 
     resetPredicate = () => {
@@ -49,13 +54,11 @@ export default class PersonStore {
 
         if (nameFilter.length > 0)
         {
-            console.log(nameFilter);
             this.predicate.set('name', nameFilter);
         }
 
         if (categoryFilter.length > 0)
         {
-            console.log(categoryFilter);
             this.predicate.set('category', categoryFilter);
         }
 
@@ -65,11 +68,11 @@ export default class PersonStore {
             if (dead) deadFilter.push("true");
             if (notDead) deadFilter.push("false");
             if (deadUnspecified) deadFilter.push("null");
-            
-            console.log(deadFilter);
     
             this.predicate.set('dead', deadFilter.join('|'));
         }
+
+        this.predicate.set('sorting', this.sorting);
     }
 
     get axiosParams() {
@@ -80,20 +83,18 @@ export default class PersonStore {
         return params;
     }
 
-    // Vi vil gerne sortere i overensstemmelse med hvordan det gøres, når man beder databasen
-    // sortere på fornavn primært og efternavn sekundært
-    get peopleByName() {
-        return Array.from(this.personRegistry.values()).sort((a, b) => {
-            if (a.firstName !== b.firstName) {
-                return a.firstName.localeCompare(b.firstName, 'en');
-            }
-            let surnameA = a.surname === null ? "" : a.surname;
-            let surnameB = b.surname === null ? "" : b.surname;
-            return surnameA.localeCompare(surnameB, 'en');
-        });
-    }
+    get sortedPeople() {
+        if (this.sorting === "name") {
+            return Array.from(this.personRegistry.values()).sort((a, b) => {
+                if (a.firstName !== b.firstName) {
+                    return a.firstName.localeCompare(b.firstName, 'en');
+                }
+                let surnameA = a.surname === null ? "" : a.surname;
+                let surnameB = b.surname === null ? "" : b.surname;
+                return surnameA.localeCompare(surnameB, 'en');
+            });
+        }
 
-    get peopleByCreatedDesc() {
         return Array.from(this.personRegistry.values()).sort((a, b) => {
             return a.created > b.created ? -1 : 1
         });

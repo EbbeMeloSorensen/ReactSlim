@@ -1,5 +1,5 @@
 import { observer } from 'mobx-react-lite';
-import React, { Fragment } from 'react';
+import React from 'react';
 import { List } from 'semantic-ui-react';
 import { useStore } from '../../../app/stores/store';
 import PersonListItem from './PersonListItem';
@@ -14,11 +14,11 @@ import PersonListItem from './PersonListItem';
 
 export default observer(function PersonList() {
     const {personStore} = useStore();
-    const {peopleByName, peopleByCreatedDesc} = personStore;
+    const {sortedPeople} = personStore;
 
     return (
         <List divided>
-            {peopleByName.map(person => (
+            {sortedPeople.map(person => (
                 <PersonListItem key={person.id} person={person} />
             ))}
         </List>
